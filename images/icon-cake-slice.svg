@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cake slice">
+  <path d="M12 48 L32 14 L52 48 Z" fill="#f2e6d2" stroke="#8a5a2b" stroke-width="2.5" stroke-linejoin="round"/>
+  <path d="M18 48 L32 24 L46 48" fill="none" stroke="#e0611c" stroke-width="2.2"/>
+  <line x1="12" y1="48" x2="52" y2="48" stroke="#8a5a2b" stroke-width="2.5"/>
+  <circle cx="32" cy="19" r="2.2" fill="#e0611c"/>
+</svg>

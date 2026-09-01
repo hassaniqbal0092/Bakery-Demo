@@ -1,0 +1,9 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sourdough loaf">
+  <ellipse cx="32" cy="38" rx="26" ry="16" fill="#f2e6d2" stroke="#8a5a2b" stroke-width="2.5"/>
+  <path d="M32 22c-9 0-17 3-22 9 3 9 12 15 22 15s19-6 22-15c-5-6-13-9-22-9z" fill="#fbf3e6" stroke="#8a5a2b" stroke-width="2.5"/>
+  <g fill="none" stroke="#e0611c" stroke-width="2.4" stroke-linecap="round">
+    <path d="M16 34 Q22 24 28 34"/>
+    <path d="M27 33 Q33 22 39 33"/>
+    <path d="M38 34 Q44 25 49 35"/>
+  </g>
+</svg>

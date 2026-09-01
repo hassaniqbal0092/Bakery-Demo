@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQs | Ember & Oak Bakehouse</title>
+  <meta name="description" content="Answers to common questions about ordering, custom cakes, delivery and pickup, allergens, and payment at Ember & Oak Bakehouse.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="faq">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">FAQs</span>
+        <h1>Frequently asked questions</h1>
+        <p>Can't find your answer here? <a href="contact.html" style="color:var(--flour);text-decoration:underline;">Contact us</a> and we'll get back to you within one business day.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="accordion" id="faqAccordion"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const p = window.BAKERY_CONFIG.policy;
+
+      const groups = [
+        {
+          id: "ordering",
+          title: "Ordering & Menu",
+          items: [
+            {
+              q: "Do I need to order ahead for everyday breads and pastries?",
+              a: "Walk-ins are always welcome, but our daily bakes sell in limited batches and often sell out by early afternoon. For guaranteed availability, add items to your cart on the Menu page and check out online for pickup.",
+            },
+            {
+              q: "Can I place a large order for an office or event?",
+              a: `Yes — for orders over 20 units of any single item, please reach out through our <a href="contact.html">Contact page</a> at least 3 days in advance so we can plan production.`,
+            },
+            {
+              q: "How do I cancel or change an online order?",
+              a: `Call us as soon as possible at <a href="tel:${window.BAKERY_CONFIG.business.phone.tel}">${window.BAKERY_CONFIG.business.phone.display}</a>. Because ingredients are prepped daily, we can't guarantee changes made less than 12 hours before pickup.`,
+            },
+          ],
+        },
+        {
+          id: "custom-cakes",
+          title: "Custom Cakes",
+          items: [
+            {
+              q: "How far in advance should I book a custom cake?",
+              a: "We recommend at least 2 weeks' notice for birthday and celebration cakes, and 6–8 weeks for wedding cakes, especially during spring and fall wedding season.",
+            },
+            {
+              q: "How does pricing and the deposit work?",
+              a: `After you submit the Custom Cake form on our Menu page, our pastry chef follows up with a quote based on size, design complexity, and flavors. A ${p.customCakeDepositPercent}% deposit secures your date, with the remaining balance due ${p.customCakeBalanceDueDays} days before pickup.`,
+            },
+            {
+              q: "Can you match a photo or design I have in mind?",
+              a: "We love working from references! Share photos, color palettes, or themes in the design request field, and we'll follow up to talk through what's achievable.",
+            },
+            {
+              q: "Do you offer cake tastings?",
+              a: "For wedding orders over $500, we offer a paid tasting box of your top flavor choices, credited toward your final order.",
+            },
+          ],
+        },
+        {
+          id: "delivery-pickup",
+          title: "Delivery & Pickup",
+          items: [
+            {
+              q: "Is delivery available?",
+              a: `Yes — local delivery is available for orders of $${p.deliveryMinimum} or more within ${p.deliveryRadiusMiles} miles of the bakery, for a flat $${p.deliveryFee} fee. Wedding cake delivery is arranged individually due to setup requirements.`,
+            },
+            {
+              q: "Where do I pick up my order?",
+              a: "All pickups are at our Depot Street location in the River Arts District. Online orders are held at the front counter — just give your name.",
+            },
+            {
+              q: "What if I'm running late to pick up my order?",
+              a: "We hold online orders until closing on the day of pickup. For custom cakes, please call ahead if you're running more than 30 minutes late so we can keep it properly stored.",
+            },
+          ],
+        },
+        {
+          id: "allergens",
+          title: "Allergens & Dietary Needs",
+          items: [
+            {
+              q: "Are your products nut-free or gluten-free?",
+              a: "No — our kitchen bakes with wheat, dairy, eggs, and tree nuts daily, and we can't guarantee any item is free of cross-contact with these allergens.",
+            },
+            {
+              q: "Do you offer vegan options?",
+              a: "Most of our sourdough breads are made without dairy or eggs (check the tag on each Menu item), but they're baked in a shared kitchen, so we can't certify them as fully vegan or allergen-free.",
+            },
+            {
+              q: "Can custom cakes accommodate dietary restrictions?",
+              a: "We can often adapt custom cakes for common requests (reduced sugar, nut-free fillings, etc.) — mention it in the design request field and we'll let you know what's possible.",
+            },
+          ],
+        },
+        {
+          id: "payment",
+          title: "Payment",
+          items: [
+            {
+              q: "What payment methods do you accept?",
+              a: "In-store we accept cash and all major cards. Online orders are processed securely through Stripe Checkout, so your card details never pass through our website directly.",
+            },
+            {
+              q: "When is payment due for a custom cake?",
+              a: `A ${p.customCakeDepositPercent}% deposit is due at booking to confirm your date, with the balance due ${p.customCakeBalanceDueDays} days before pickup. We'll send a reminder by email.`,
+            },
+            {
+              q: "What's your refund policy?",
+              a: "Everyday menu items can be refunded or replaced if there's an issue with your order — just let us know through our Feedback page. Custom cake deposits are non-refundable within 7 days of the event date, since ingredients and time are reserved specifically for your order.",
+            },
+          ],
+        },
+      ];
+
+      const mount = document.getElementById("faqAccordion");
+      mount.innerHTML = groups
+        .map(
+          (group) => `
+        <div class="accordion-group" id="${group.id}">
+          <h2>${group.title}</h2>
+          ${group.items
+            .map(
+              (item, i) => `
+            <div class="accordion-item">
+              <h3 style="margin:0;">
+                <button type="button" class="accordion-trigger" aria-expanded="false">
+                  <span>${item.q}</span>
+                  <span class="accordion-trigger__icon" aria-hidden="true"></span>
+                </button>
+              </h3>
+              <div class="accordion-panel">
+                <div class="accordion-panel__inner">${item.a}</div>
+              </div>
+            </div>`
+            )
+            .join("")}
+        </div>`
+        )
+        .join("");
+
+      mount.querySelectorAll(".accordion-trigger").forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          const item = trigger.closest(".accordion-item");
+          const panel = item.querySelector(".accordion-panel");
+          const isOpen = item.classList.contains("is-open");
+
+          if (isOpen) {
+            panel.style.maxHeight = "0px";
+            item.classList.remove("is-open");
+            trigger.setAttribute("aria-expanded", "false");
+          } else {
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            item.classList.add("is-open");
+            trigger.setAttribute("aria-expanded", "true");
+          }
+        });
+      });
+
+      // Open the first item of a hash-linked group, e.g. faq.html#custom-cakes
+      if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+          const firstTrigger = target.querySelector(".accordion-trigger");
+          if (firstTrigger) firstTrigger.click();
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    })();
+  </script>
+</body>
+</html>

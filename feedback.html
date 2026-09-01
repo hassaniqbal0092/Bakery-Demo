@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback & Complaints | Ember & Oak Bakehouse</title>
+  <meta name="description" content="Had an issue with an order or want to share feedback with Ember & Oak Bakehouse? Let us know here — we read every submission.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="feedback">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">Feedback & Complaints</span>
+        <h1>Tell us how we did</h1>
+        <p>Whether it's a compliment for the team or something that went wrong with an order, this form goes straight to our bakery manager — not the general inbox — so it gets a faster, more direct response. For general questions, use our <a href="contact.html" style="color:var(--flour);text-decoration:underline;">Contact page</a> instead.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:720px;">
+        <div class="form-card">
+          <div class="form-status" id="feedbackStatus" role="alert"></div>
+          <form id="feedbackForm">
+            <div class="field">
+              <label>What kind of feedback is this?</label>
+              <div class="radio-group">
+                <label class="pill-choice">
+                  <input type="radio" name="feedbackType" value="Compliment" required>
+                  <span>👍 Compliment</span>
+                </label>
+                <label class="pill-choice">
+                  <input type="radio" name="feedbackType" value="Suggestion">
+                  <span>💡 Suggestion</span>
+                </label>
+                <label class="pill-choice">
+                  <input type="radio" name="feedbackType" value="Complaint">
+                  <span>⚠️ Complaint</span>
+                </label>
+              </div>
+              <span class="field-error">Please choose one.</span>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input type="text" id="f-name" name="name" required autocomplete="name">
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input type="email" id="f-email" name="email" required autocomplete="email">
+                <span class="field-error">Please enter a valid email address.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="f-order-date">Order date <span class="hint">Optional — if this relates to a specific visit or order.</span></label>
+              <input type="date" id="f-order-date" name="orderDate">
+            </div>
+
+            <div class="field">
+              <label for="f-details">Details</label>
+              <textarea id="f-details" name="details" required minlength="10" placeholder="Tell us what happened, or what you'd like us to know."></textarea>
+              <span class="field-error">Please share a few details (at least 10 characters).</span>
+            </div>
+
+            <div class="field">
+              <label class="pill-choice" style="display:inline-flex;align-items:center;gap:0.5rem;">
+                <input type="checkbox" name="wantsResponse" value="yes" style="position:static;opacity:1;width:auto;">
+                <span style="border:none;padding:0;">I'd like someone to follow up with me directly</span>
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+          </form>
+
+          <div class="form-success" id="feedbackSuccess">
+            <img src="images/icon-check.svg" alt="" class="form-success__icon" width="64" height="64">
+            <h3>Thank you</h3>
+            <p>Your feedback has been sent to our bakery manager. If you asked for a follow-up, we'll be in touch soon.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const config = window.BAKERY_CONFIG;
+      const form = document.getElementById("feedbackForm");
+
+      window.EmberForms.initForm(form, {
+        endpoint: config.forms.feedbackEndpoint,
+        formName: "feedback",
+        statusEl: "#feedbackStatus",
+        successEl: "#feedbackSuccess",
+      });
+    })();
+  </script>
+</body>
+</html>

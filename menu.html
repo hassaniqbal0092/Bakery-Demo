@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu & Custom Cakes | Ember & Oak Bakehouse</title>
+  <meta name="description" content="Browse wood-fired breads, viennoiserie, and everyday cakes from Ember & Oak Bakehouse, and request a custom celebration or wedding cake.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="menu">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">Menu</span>
+        <h1>Fresh from the hearth, baked in small batches</h1>
+        <p>Everything below is baked in-house daily. Add items to your cart for pickup, or scroll down to request a custom celebration cake.</p>
+      </div>
+    </section>
+
+    <nav class="menu-jump" aria-label="Jump to menu section">
+      <div class="container" style="display:flex;gap:0.6rem;flex-wrap:wrap;padding:0;">
+        <a href="#breads">Breads</a>
+        <a href="#pastries">Pastries</a>
+        <a href="#cakes">Everyday Cakes</a>
+        <a href="#custom-cakes">Custom Cakes</a>
+      </div>
+    </nav>
+
+    <div class="container" id="menuCategories"></div>
+
+    <section class="section section--charcoal" id="custom-cakes">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Custom Cakes</span>
+          <h2>Design a cake with us</h2>
+          <p id="customCakeIntro"></p>
+        </div>
+
+        <div class="form-card" style="max-width:820px;margin:0 auto;">
+          <div class="form-status" id="customCakeStatus" role="alert"></div>
+
+          <form id="customCakeForm">
+            <div class="form-grid">
+              <div class="field">
+                <label for="cc-name">Full name</label>
+                <input type="text" id="cc-name" name="name" required autocomplete="name">
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="cc-email">Email</label>
+                <input type="email" id="cc-email" name="email" required autocomplete="email">
+                <span class="field-error">Please enter a valid email address.</span>
+              </div>
+              <div class="field">
+                <label for="cc-phone">Phone</label>
+                <input type="tel" id="cc-phone" name="phone" required autocomplete="tel" pattern="[0-9\s\(\)\+\-]{7,}">
+                <span class="field-error">Please enter a valid phone number.</span>
+              </div>
+              <div class="field">
+                <label for="cc-date">Date needed</label>
+                <input type="date" id="cc-date" name="dateNeeded" required>
+                <span class="field-error">Please choose a date.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cc-occasion">Occasion</label>
+              <select id="cc-occasion" name="occasion" required></select>
+              <span class="field-error">Please select an occasion.</span>
+            </div>
+
+            <div class="field">
+              <label>Size <span class="hint">Approximate serving size — we'll confirm exact portions with your quote.</span></label>
+              <div class="radio-group" id="cc-sizes"></div>
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="cc-flavor">Cake flavor</label>
+                <select id="cc-flavor" name="flavor" required></select>
+                <span class="field-error">Please choose a flavor.</span>
+              </div>
+              <div class="field">
+                <label for="cc-filling">Filling</label>
+                <select id="cc-filling" name="filling" required></select>
+                <span class="field-error">Please choose a filling.</span>
+              </div>
+            </div>
+
+            <div class="field">
+              <label for="cc-message">Cake message / inscription <span class="hint">Optional — leave blank for no writing on the cake.</span></label>
+              <input type="text" id="cc-message" name="cakeMessage" maxlength="60">
+            </div>
+
+            <div class="field">
+              <label for="cc-design">Design request</label>
+              <textarea id="cc-design" name="designRequest" required placeholder="Describe colors, theme, tiers, references, dietary needs, etc."></textarea>
+              <span class="field-error">Please tell us a bit about the design you have in mind.</span>
+            </div>
+
+            <div class="field">
+              <label for="cc-budget">Budget range <span class="hint">Optional — helps us tailor design suggestions.</span></label>
+              <select id="cc-budget" name="budgetRange">
+                <option value="">Prefer not to say</option>
+                <option value="Under $100">Under $100</option>
+                <option value="$100–$250">$100–$250</option>
+                <option value="$250–$500">$250–$500</option>
+                <option value="$500+">$500+</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Submit Custom Cake Request</button>
+            <p class="cart-note" id="customCakeNote"></p>
+          </form>
+
+          <div class="form-success" id="customCakeSuccess">
+            <img src="images/icon-check.svg" alt="" class="form-success__icon" width="64" height="64">
+            <h3>Request received!</h3>
+            <p>Thank you — our pastry chef will email you within two business days with a quote and to lock in your date. Questions in the meantime? Call us at <a href="tel:" id="successPhoneLink" style="color:var(--ember-dim);font-weight:600;"></a>.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const config = window.BAKERY_CONFIG;
+
+      /* ---- render menu categories ---- */
+      const catMount = document.getElementById("menuCategories");
+      catMount.innerHTML = config.menu.categories
+        .map(
+          (cat) => `
+        <section class="menu-category" id="${cat.id}">
+          <div class="menu-category__head">
+            <h2>${cat.name}</h2>
+            <p>${cat.description}</p>
+          </div>
+          <div class="menu-grid">
+            ${cat.items
+              .map((item) => {
+                const hasSizes = Array.isArray(item.sizes) && item.sizes.length > 0;
+                const sizeOptions = hasSizes
+                  ? item.sizes.map((s, i) => `<option value="${i}">${s.label} — $${s.price.toFixed(2)}</option>`).join("")
+                  : "";
+                return `
+                <article class="menu-item" data-item-id="${item.id}" data-icon="${item.icon}" data-name="${item.name}">
+                  <div class="menu-item__icon"><img src="images/${item.icon}" alt="" width="38" height="38" loading="lazy"></div>
+                  <div class="menu-item__body">
+                    <div class="menu-item__row">
+                      <h3>${item.name}</h3>
+                      <span class="menu-item__price" data-price-display>$${(hasSizes ? item.sizes[0].price : item.price).toFixed(2)}</span>
+                    </div>
+                    <p>${item.description}</p>
+                    <div class="menu-item__foot">
+                      <div class="menu-item__sizes">
+                        ${hasSizes ? `<select data-size-select aria-label="Size for ${item.name}">${sizeOptions}</select>` : ""}
+                      </div>
+                      <div class="qty-add">
+                        <button type="button" class="add-btn" data-add-btn data-base-price="${item.price}">Add to Cart</button>
+                      </div>
+                    </div>
+                  </div>
+                </article>`;
+              })
+              .join("")}
+          </div>
+        </section>`
+        )
+        .join("");
+
+      // Wire up add-to-cart + size selects
+      catMount.querySelectorAll(".menu-item").forEach((el) => {
+        const sizeSelect = el.querySelector("[data-size-select]");
+        const priceDisplay = el.querySelector("[data-price-display]");
+        const addBtn = el.querySelector("[data-add-btn]");
+        const itemId = el.dataset.itemId;
+        const icon = el.dataset.icon;
+        const name = el.dataset.name;
+        const category = config.menu.categories.find((c) => c.items.some((i) => i.id === itemId));
+        const itemData = category.items.find((i) => i.id === itemId);
+
+        function currentPrice() {
+          if (itemData.sizes) return itemData.sizes[sizeSelect.value].price;
+          return itemData.price;
+        }
+        function currentVariant() {
+          return itemData.sizes ? itemData.sizes[sizeSelect.value].label : null;
+        }
+
+        if (sizeSelect) {
+          sizeSelect.addEventListener("change", () => {
+            priceDisplay.textContent = `$${currentPrice().toFixed(2)}`;
+          });
+        }
+
+        addBtn.addEventListener("click", () => {
+          window.Cart.addItem({
+            itemId,
+            name,
+            price: currentPrice(),
+            variant: currentVariant(),
+            icon,
+            qty: 1,
+          });
+          const original = addBtn.textContent;
+          addBtn.textContent = "Added ✓";
+          addBtn.classList.add("is-added");
+          setTimeout(() => {
+            addBtn.textContent = original;
+            addBtn.classList.remove("is-added");
+          }, 1200);
+        });
+      });
+
+      /* ---- custom cake form: populate selects/pills from config ---- */
+      const cc = config.menu.customCake;
+      document.getElementById("customCakeIntro").textContent = cc.intro;
+
+      const occasionSelect = document.getElementById("cc-occasion");
+      occasionSelect.innerHTML =
+        `<option value="">Select an occasion…</option>` + cc.occasions.map((o) => `<option value="${o}">${o}</option>`).join("");
+
+      const flavorSelect = document.getElementById("cc-flavor");
+      flavorSelect.innerHTML = `<option value="">Select a flavor…</option>` + cc.flavors.map((f) => `<option value="${f}">${f}</option>`).join("");
+
+      const fillingSelect = document.getElementById("cc-filling");
+      fillingSelect.innerHTML = `<option value="">Select a filling…</option>` + cc.fillings.map((f) => `<option value="${f}">${f}</option>`).join("");
+
+      const sizesMount = document.getElementById("cc-sizes");
+      sizesMount.innerHTML = cc.sizes
+        .map(
+          (s, i) => `
+        <label class="pill-choice">
+          <input type="radio" name="size" value="${s}" ${i === 0 ? "required" : ""}>
+          <span>${s}</span>
+        </label>`
+        )
+        .join("");
+
+      document.getElementById("customCakeNote").textContent =
+        `We'll reply by email within two business days with a quote and to confirm your date. A ${config.policy.customCakeDepositPercent}% deposit secures your booking.`;
+
+      document.getElementById("successPhoneLink").textContent = config.business.phone.display;
+      document.getElementById("successPhoneLink").href = `tel:${config.business.phone.tel}`;
+
+      // Minimum date = today
+      document.getElementById("cc-date").min = new Date().toISOString().split("T")[0];
+
+      window.EmberForms.initForm(document.getElementById("customCakeForm"), {
+        endpoint: config.forms.customCakeEndpoint,
+        formName: "custom-cake-request",
+        statusEl: "#customCakeStatus",
+        successEl: "#customCakeSuccess",
+      });
+
+      // Handle ?checkout=success / cancelled banner from Stripe redirect
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("checkout") === "success") {
+        window.Cart.clear();
+        alert("Thank you! Your order was placed successfully. We'll see you at pickup.");
+      } else if (params.get("checkout") === "cancelled") {
+        alert("Checkout was cancelled — your cart has been saved.");
+      }
+    })();
+  </script>
+</body>
+</html>

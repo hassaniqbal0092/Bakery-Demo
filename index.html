@@ -1,1134 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pita or Bowl — Build-Your-Own Mediterranean, Springfield IL</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --cream: #FAF2E1;
-    --cream-2: #F1E4C6;
-    --ink: #1F332B;
-    --olive: #55692F;
-    --olive-dark: #3E4E22;
-    --gold: #E2A63B;
-    --plum: #7A3B49;
-    --line: rgba(31,51,43,0.14);
-    --radius: 4px;
-  }
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--cream);
-    color:var(--ink);
-    font-family:'Work Sans', sans-serif;
-    font-size:16px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-  h1,h2,h3,.display{
-    font-family:'Fraunces', serif;
-    font-weight:500;
-    letter-spacing:-0.01em;
-    margin:0;
-  }
-  a{color:inherit;}
-  img{max-width:100%;display:block;}
-  .wrap{max-width:1160px;margin:0 auto;padding:0 28px;}
-  :focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
-
-  /* ---------- NAV ---------- */
-  header{
-    position:sticky; top:0; z-index:50;
-    background:rgba(250,242,225,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
-  nav.wrap{
-    display:flex; align-items:center; justify-content:space-between;
-    padding-top:18px; padding-bottom:18px;
-  }
-  .logo{
-    font-family:'Fraunces', serif;
-    font-weight:600;
-    font-size:1.25rem;
-    letter-spacing:-0.01em;
-    display:flex; align-items:center; gap:10px;
-  }
-  .logo .mark{
-    width:30px; height:30px; border-radius:50%;
-    background: conic-gradient(from 200deg, var(--olive), var(--gold), var(--plum), var(--olive));
-    flex-shrink:0;
-  }
-  .nav-links{display:flex; align-items:center; gap:34px; font-size:0.92rem; font-weight:500;}
-  .nav-links a{text-decoration:none; opacity:0.82; transition:opacity .15s;}
-  .nav-links a:hover{opacity:1;}
-  .nav-cta{
-    background:var(--olive); color:var(--cream);
-    padding:10px 20px; border-radius:999px; font-size:0.88rem; font-weight:600;
-    text-decoration:none; white-space:nowrap; transition:background .15s;
-  }
-  .nav-cta:hover{background:var(--olive-dark);}
-  .nav-toggle{display:none;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    padding:76px 0 90px;
-    overflow:hidden;
-  }
-  .hero-grid{
-    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-size:0.8rem; font-weight:600; letter-spacing:0.06em; text-transform:uppercase;
-    color:var(--olive-dark); margin-bottom:22px;
-  }
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
-  .hero h1{
-    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
-    line-height:1.04;
-  }
-  .hero h1 em{font-style:italic; color:var(--olive-dark);}
-  .hero p.lede{
-    margin-top:22px; font-size:1.08rem; max-width:46ch; opacity:0.86;
-  }
-  .hero-ctas{display:flex; gap:14px; margin-top:34px; flex-wrap:wrap;}
-  .btn{
-    display:inline-flex; align-items:center; gap:8px;
-    padding:14px 26px; border-radius:999px; font-weight:600; font-size:0.95rem;
-    text-decoration:none; border:1px solid transparent; cursor:pointer;
-    transition:transform .15s ease, background .15s ease, border-color .15s;
-  }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--ink); color:var(--cream);}
-  .btn-primary:hover{background:var(--olive-dark);}
-  .btn-ghost{background:transparent; border-color:var(--ink);}
-  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
-
-  .rating-badge{
-    display:inline-flex; align-items:center; gap:10px; margin-top:30px;
-    padding:10px 16px 10px 10px; background:var(--cream-2); border-radius:999px;
-    font-size:0.86rem; font-weight:600;
-  }
-  .rating-badge .stars{color:var(--gold); letter-spacing:1px;}
-
-  /* Signature hero graphic: layered bowl rings behind real photo */
-  .bowl-art{position:relative; display:flex; align-items:center; justify-content:center;}
-  .bowl-art svg{width:100%; max-width:420px; height:auto;}
-  .ring{transform-origin:210px 210px; transition:transform .6s ease;}
-  .bowl-art:hover .ring1{transform:rotate(6deg);}
-  .bowl-art:hover .ring2{transform:rotate(-8deg);}
-  .bowl-art:hover .ring3{transform:rotate(10deg);}
-
-  .hero-photo{
-    position:relative; width:100%; max-width:360px; aspect-ratio:3/4;
-    border-radius:8px; overflow:hidden;
-    box-shadow:0 24px 48px -18px rgba(31,51,43,0.45);
-  }
-  .hero-photo img{width:100%; height:100%; object-fit:cover;}
-  .hero-photo .ring-behind{
-    position:absolute; inset:-38px; z-index:-1; opacity:0.9;
-  }
-  .hero-photo .ring-behind svg{width:100%; height:100%;}
-
-  .menu-card{position:relative; overflow:hidden;}
-  .menu-thumb{
-    width:100%; aspect-ratio:16/10; border-radius:3px; overflow:hidden; margin-bottom:20px;
-  }
-  .menu-thumb img{width:100%; height:100%; object-fit:cover; transition:transform .4s ease;}
-  .menu-card:hover .menu-thumb img{transform:scale(1.05);}
-
-  /* ---------- SECTION HEADERS ---------- */
-  .section{padding:86px 0;}
-  .section-alt{background:var(--cream-2);}
-  .section-head{max-width:56ch; margin-bottom:52px;}
-  .section-head .eyebrow{margin-bottom:16px;}
-  .section-head h2{font-size:clamp(1.8rem, 3vw, 2.4rem); line-height:1.12;}
-  .section-head p{margin-top:16px; opacity:0.82; font-size:1.02rem;}
-
-  /* ---------- BUILD YOUR BOWL (signature) ---------- */
-  .build-steps{
-    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
-    border-top:1px solid var(--line);
-  }
-  .step{
-    padding:34px 22px 34px 0; border-bottom:1px solid var(--line);
-    position:relative;
-  }
-  .step + .step{padding-left:26px;}
-  .step:not(:last-child)::after{
-    content:"→"; position:absolute; right:-4px; top:36px;
-    font-size:1.1rem; color:var(--gold); opacity:0.9;
-  }
-  .step-num{
-    font-family:'Fraunces', serif; font-style:italic; font-size:0.95rem;
-    color:var(--olive-dark); opacity:0.75; margin-bottom:14px; display:block;
-  }
-  .step-ring{
-    width:44px; height:44px; border-radius:50%; margin-bottom:16px;
-  }
-  .step h3{font-size:1.08rem; font-weight:600; font-family:'Work Sans',sans-serif; margin-bottom:8px;}
-  .step p{font-size:0.92rem; opacity:0.78; margin:0;}
-
-  /* ---------- MENU CARDS ---------- */
-  .menu-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
-  .menu-card{
-    background:var(--cream); border:1px solid var(--line); border-radius:var(--radius);
-    padding:30px 26px; transition:border-color .15s, transform .15s;
-  }
-  .menu-card:hover{border-color:var(--olive); transform:translateY(-3px);}
-  .menu-card .tag{
-    display:inline-block; font-size:0.72rem; font-weight:700; text-transform:uppercase;
-    letter-spacing:0.06em; color:var(--plum); margin-bottom:14px;
-  }
-  .menu-card h3{font-size:1.3rem; margin-bottom:10px;}
-  .menu-card p{font-size:0.92rem; opacity:0.8; margin-bottom:18px;}
-  .menu-card .price{font-weight:600; font-size:0.9rem; color:var(--olive-dark);}
-  .menu-card .swatch{width:100%; height:6px; border-radius:3px; margin-bottom:20px;}
-
-  /* ---------- DIGITAL MENU ---------- */
-  .teaser-cta{margin-top:40px; text-align:center;}
-  .digital-menu-head{display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap;}
-  .menu-tabs{
-    display:flex; gap:8px; flex-wrap:wrap; margin-top:36px; margin-bottom:8px;
-    border-bottom:1px solid var(--line); padding-bottom:0;
-  }
-  .menu-tab{
-    appearance:none; border:none; background:none; cursor:pointer;
-    font-family:'Work Sans',sans-serif; font-size:0.92rem; font-weight:600; color:var(--ink);
-    padding:12px 18px; opacity:0.55; border-bottom:2px solid transparent;
-    transition:opacity .15s, border-color .15s; margin-bottom:-1px;
-  }
-  .menu-tab:hover{opacity:0.85;}
-  .menu-tab.active{opacity:1; border-bottom-color:var(--olive); color:var(--olive-dark);}
-  .menu-panels{margin-top:28px;}
-  .menu-panel{display:none;}
-  .menu-panel.active{display:block; animation:fadeIn .35s ease;}
-  @keyframes fadeIn{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;}}
-  .menu-items{display:grid; grid-template-columns:1fr 1fr; gap:0 40px;}
-  .menu-item{
-    display:flex; justify-content:space-between; gap:16px;
-    padding:20px 0; border-bottom:1px solid var(--line);
-  }
-  .menu-item-name{font-weight:600; font-size:1.02rem;}
-  .menu-item-tags{font-size:0.78rem; color:var(--olive-dark); font-weight:600; margin-left:8px;}
-  .menu-item-desc{font-size:0.87rem; opacity:0.7; margin-top:4px; max-width:38ch;}
-  .menu-item-price{font-weight:700; font-family:'Fraunces',serif; font-size:1.05rem; white-space:nowrap; padding-top:1px;}
-  .menu-note{margin-top:28px; font-size:0.85rem; opacity:0.65; text-align:center;}
-
-  /* item row layout with controls */
-  .menu-item{align-items:center;}
-  .menu-item-info{flex:1; min-width:0;}
-  .menu-item-right{display:flex; align-items:center; gap:16px; flex-shrink:0;}
-  .menu-item-price{min-width:56px; text-align:right;}
-  .menu-item-price.tbd{font-family:'Work Sans',sans-serif; font-weight:600; font-size:0.8rem; opacity:0.55; font-style:italic;}
-
-  .add-btn{
-    appearance:none; border:1px solid var(--olive); background:transparent; color:var(--olive-dark);
-    font-family:'Work Sans',sans-serif; font-weight:700; font-size:0.8rem; letter-spacing:0.02em;
-    padding:8px 16px; border-radius:999px; cursor:pointer; white-space:nowrap;
-    transition:background .15s, color .15s;
-  }
-  .add-btn:hover{background:var(--olive); color:var(--cream);}
-  .add-btn:disabled{opacity:0.4; cursor:not-allowed; border-color:var(--line);}
-
-  .qty-stepper{
-    display:flex; align-items:center; gap:0; border:1px solid var(--olive); border-radius:999px; overflow:hidden;
-  }
-  .qty-btn{
-    appearance:none; border:none; background:var(--cream); color:var(--olive-dark); width:28px; height:28px;
-    font-size:1rem; font-weight:700; cursor:pointer; display:flex; align-items:center; justify-content:center;
-    transition:background .15s;
-  }
-  .qty-btn:hover{background:var(--cream-2);}
-  .qty-val{min-width:20px; text-align:center; font-weight:700; font-size:0.85rem; font-family:'Work Sans',sans-serif;}
-
-  .build-note{
-    margin-top:36px; padding-top:32px; border-top:1px solid var(--line);
-    display:grid; grid-template-columns:repeat(4,1fr); gap:26px;
-  }
-  .build-note-col h4{
-    font-family:'Fraunces',serif; font-weight:600; font-size:0.95rem; margin-bottom:10px;
-  }
-  .build-note-col p{font-size:0.82rem; opacity:0.72; margin:0; line-height:1.6;}
-  .combo-callout{
-    margin-top:24px; background:var(--cream-2); border-radius:var(--radius); padding:16px 20px;
-    font-size:0.88rem; font-weight:600; color:var(--olive-dark);
-  }
-
-  /* floating cart */
-  .cart-fab{
-    position:fixed; right:24px; bottom:24px; z-index:80;
-    background:var(--ink); color:var(--cream); border:none; border-radius:999px;
-    padding:15px 22px; display:flex; align-items:center; gap:10px; cursor:pointer;
-    box-shadow:0 14px 30px -10px rgba(31,51,43,0.5); font-family:'Work Sans',sans-serif;
-    font-weight:700; font-size:0.9rem; transition:transform .15s;
-  }
-  .cart-fab:hover{transform:translateY(-2px);}
-  .cart-fab .badge{
-    background:var(--gold); color:var(--ink); border-radius:999px; min-width:20px; height:20px;
-    display:flex; align-items:center; justify-content:center; font-size:0.75rem; padding:0 5px;
-  }
-  .cart-fab[hidden]{display:none;}
-
-  .cart-overlay{
-    position:fixed; inset:0; background:rgba(31,51,43,0.4); z-index:90; opacity:0; pointer-events:none;
-    transition:opacity .25s ease;
-  }
-  .cart-overlay.open{opacity:1; pointer-events:auto;}
-
-  .cart-panel{
-    position:fixed; top:0; right:0; bottom:0; width:100%; max-width:400px; background:var(--cream);
-    z-index:95; box-shadow:-16px 0 40px -12px rgba(31,51,43,0.35);
-    transform:translateX(100%); transition:transform .3s ease;
-    display:flex; flex-direction:column;
-  }
-  .cart-panel.open{transform:translateX(0);}
-  .cart-head{
-    display:flex; align-items:center; justify-content:space-between; padding:22px 24px;
-    border-bottom:1px solid var(--line);
-  }
-  .cart-head h3{font-size:1.2rem;}
-  .cart-close{
-    appearance:none; border:none; background:none; font-size:1.3rem; cursor:pointer; color:var(--ink);
-    width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  }
-  .cart-close:hover{background:var(--cream-2);}
-  .cart-body{flex:1; overflow-y:auto; padding:8px 24px;}
-  .cart-empty{padding:48px 0; text-align:center; opacity:0.6; font-size:0.92rem;}
-  .cart-line{
-    display:flex; align-items:center; gap:14px; padding:16px 0; border-bottom:1px solid var(--line);
-  }
-  .cart-line-info{flex:1; min-width:0;}
-  .cart-line-name{font-weight:600; font-size:0.92rem;}
-  .cart-line-unit{font-size:0.78rem; opacity:0.6; margin-top:2px;}
-  .cart-line-total{font-weight:700; font-family:'Fraunces',serif; min-width:56px; text-align:right;}
-  .cart-remove{
-    appearance:none; border:none; background:none; opacity:0.45; cursor:pointer; font-size:0.85rem;
-    padding:4px; line-height:1;
-  }
-  .cart-remove:hover{opacity:0.9;}
-  .cart-foot{border-top:1px solid var(--line); padding:20px 24px 26px;}
-  .cart-total-row{
-    display:flex; justify-content:space-between; align-items:baseline; margin-bottom:16px;
-    font-family:'Fraunces',serif; font-size:1.15rem; font-weight:600;
-  }
-  .cart-note{font-size:0.76rem; opacity:0.6; margin-top:12px; text-align:center;}
-
-  /* Add Menu Item */
-  .add-menu-btn{
-    display:inline-flex; align-items:center; gap:8px;
-    background:transparent; border:1px dashed var(--olive); color:var(--olive-dark);
-    font-family:'Work Sans',sans-serif; font-weight:700; font-size:0.85rem;
-    padding:10px 18px; border-radius:999px; cursor:pointer; white-space:nowrap;
-    transition:background .15s, border-style .15s;
-  }
-  .add-menu-btn:hover{background:var(--cream-2); border-style:solid;}
-
-  .modal-overlay{
-    position:fixed; inset:0; background:rgba(31,51,43,0.45); z-index:98; opacity:0; pointer-events:none;
-    transition:opacity .2s ease; display:flex; align-items:center; justify-content:center; padding:20px;
-  }
-  .modal-overlay.open{opacity:1; pointer-events:auto;}
-  .modal-box{
-    background:var(--cream); border-radius:8px; width:100%; max-width:460px; max-height:88vh;
-    overflow-y:auto; box-shadow:0 30px 60px -15px rgba(31,51,43,0.5);
-    transform:translateY(14px) scale(0.98); transition:transform .2s ease;
-  }
-  .modal-overlay.open .modal-box{transform:translateY(0) scale(1);}
-  .modal-head{
-    display:flex; align-items:center; justify-content:space-between; padding:22px 26px;
-    border-bottom:1px solid var(--line);
-  }
-  .modal-head h3{font-size:1.15rem;}
-  .modal-close{
-    appearance:none; border:none; background:none; font-size:1.2rem; cursor:pointer; color:var(--ink);
-    width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center;
-  }
-  .modal-close:hover{background:var(--cream-2);}
-  .modal-body{padding:22px 26px 8px;}
-  .field{margin-bottom:18px;}
-  .field label{
-    display:block; font-size:0.78rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
-    color:var(--olive-dark); margin-bottom:8px;
-  }
-  .field input, .field select, .field textarea{
-    width:100%; border:1px solid var(--line); background:#fff; border-radius:4px; padding:11px 12px;
-    font-family:'Work Sans',sans-serif; font-size:0.95rem; color:var(--ink);
-  }
-  .field input:focus, .field select:focus, .field textarea:focus{
-    outline:none; border-color:var(--olive);
-  }
-  .field textarea{resize:vertical; min-height:64px;}
-  .field-row{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
-  .modal-foot{
-    display:flex; justify-content:flex-end; gap:12px; padding:18px 26px 26px;
-  }
-  .field-hint{font-size:0.76rem; opacity:0.6; margin-top:24px;}
-  .toast{
-    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(12px); z-index:99;
-    background:var(--ink); color:var(--cream); padding:12px 22px; border-radius:999px; font-size:0.88rem;
-    font-weight:600; opacity:0; pointer-events:none; transition:opacity .25s ease, transform .25s ease;
-  }
-  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
-
-  /* ---------- ABOUT / VEGAN STRIP ---------- */
-  .about{
-    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
-  }
-  .about-copy p{opacity:0.85; margin-top:16px; font-size:1.02rem;}
-  .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
-  .pill{
-    font-size:0.8rem; font-weight:600; padding:8px 16px; border-radius:999px;
-    border:1px solid var(--line); background:var(--cream);
-  }
-  .about-visual{
-    aspect-ratio:1/1; border-radius:8px; background:var(--ink); position:relative; overflow:hidden;
-  }
-  .about-visual svg{position:absolute; inset:0; width:100%; height:100%;}
-
-  /* ---------- VISIT / FOOTER ---------- */
-  .visit{
-    background:var(--ink); color:var(--cream);
-  }
-  .visit .section-head p{color:var(--cream); opacity:0.72;}
-  .visit .eyebrow{color:var(--gold);}
-  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
-  .visit-info dl{margin:0;}
-  .visit-info dt{
-    font-size:0.75rem; text-transform:uppercase; letter-spacing:0.06em; opacity:0.6; margin-top:26px;
-  }
-  .visit-info dt:first-child{margin-top:0;}
-  .visit-info dd{margin:6px 0 0; font-size:1.08rem; font-family:'Fraunces',serif; font-weight:500;}
-  .visit-info a{text-decoration:none; border-bottom:1px solid rgba(250,242,225,0.35);}
-  .visit-info a:hover{border-color:var(--gold);}
-  .map-frame{
-    border-radius:6px; overflow:hidden; border:1px solid rgba(250,242,225,0.18); min-height:280px;
-  }
-  .map-frame iframe{width:100%; height:100%; min-height:280px; border:0; filter:grayscale(0.15) contrast(1.05);}
-
-  footer{
-    background:var(--ink); color:var(--cream); border-top:1px solid rgba(250,242,225,0.14);
-    padding:26px 0; font-size:0.82rem; opacity:0.6;
-  }
-  footer .wrap{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
-
-  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
-  .reveal.in{opacity:1; transform:none;}
-
-  @media (max-width:860px){
-    .hero-grid{grid-template-columns:1fr;}
-    .bowl-art{order:-1; margin-bottom:8px;}
-    .bowl-art svg{max-width:260px;}
-    .build-steps{grid-template-columns:1fr 1fr;}
-    .step:nth-child(2)::after{display:none;}
-    .menu-grid{grid-template-columns:1fr;}
-    .menu-items{grid-template-columns:1fr;}
-    .digital-menu-head{flex-direction:column; align-items:flex-start;}
-    .menu-tabs{overflow-x:auto; flex-wrap:nowrap; -webkit-overflow-scrolling:touch;}
-    .menu-tab{white-space:nowrap;}
-    .build-note{grid-template-columns:1fr 1fr;}
-    .cart-fab{right:16px; bottom:16px; padding:13px 18px;}
-    .cart-panel{max-width:100%;}
-    .field-row{grid-template-columns:1fr;}
-    .about{grid-template-columns:1fr;}
-    .visit-grid{grid-template-columns:1fr;}
-    .nav-links{position:fixed; inset:64px 0 0 0; background:var(--cream); flex-direction:column;
-      justify-content:flex-start; padding:36px 28px; gap:26px; font-size:1.1rem;
-      transform:translateX(100%); transition:transform .25s ease;}
-    .nav-links.open{transform:translateX(0);}
-    .nav-toggle{
-      display:block; background:none; border:1px solid var(--line); border-radius:8px;
-      width:40px; height:40px; font-size:1.1rem; cursor:pointer;
-    }
-  }
-  @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto;}
-    .reveal, .ring, .btn{transition:none;}
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ember & Oak Bakehouse | Wood-Fired Bread & Custom Cakes in Asheville, NC</title>
+  <meta name="description" content="Ember & Oak Bakehouse is a wood-fired sourdough bakery and custom cake studio in Asheville's River Arts District. Order breads, pastries, and custom celebration cakes.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body data-page="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
 
-<header>
-  <nav class="wrap">
-    <div class="logo"><span class="mark"></span>Pita or Bowl</div>
-    <div class="nav-links" id="navLinks">
-      <a href="#menu">Menu</a>
-      <a href="#digital-menu">Digital Menu</a>
-      <a href="#build">Build a Bowl</a>
-      <a href="#about">About</a>
-      <a href="#visit">Visit</a>
-      <a class="nav-cta" href="#visit">Order Pickup</a>
-    </div>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
-  </nav>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="eyebrow"><span class="dot"></span>Springfield, IL · Fast-casual Mediterranean</span>
-      <h1>Your bowl,<br><em>built your way.</em></h1>
-      <p class="lede">Fresh Mediterranean bowls, salads, and pitas — stacked layer by layer with the bases, proteins, and sauces you actually want. No two orders look the same.</p>
-      <div class="hero-ctas">
-        <a href="#visit" class="btn btn-primary">Order Pickup</a>
-        <a href="#visit" class="btn btn-ghost">Order Delivery</a>
-      </div>
-      <div class="rating-badge">
-        <span class="stars">★★★★★</span>
-        <span>4.9 from 1,040 Google reviews</span>
-      </div>
-    </div>
-    <div class="bowl-art">
-      <div class="hero-photo">
-        <div class="ring-behind" aria-hidden="true">
-          <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-            <g class="ring ring1">
-              <circle cx="210" cy="210" r="190" fill="none" stroke="#55692F" stroke-width="22" stroke-dasharray="220 70"/>
-            </g>
-            <g class="ring ring2">
-              <circle cx="210" cy="210" r="150" fill="none" stroke="#E2A63B" stroke-width="18" stroke-dasharray="170 60"/>
-            </g>
-          </svg>
-        </div>
-        <img src="images/storefront.jpg" alt="Pita or Bowl storefront on S Grand Ave E, Springfield, IL">
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="build">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>How it works</span>
-      <h2>Four layers. One bowl that's entirely yours.</h2>
-      <p>Every order starts empty and gets built up in front of you — pick a base, a protein, whatever's fresh that day, and finish it your way.</p>
-    </div>
-    <div class="build-steps reveal">
-      <div class="step">
-        <span class="step-num">01</span>
-        <div class="step-ring" style="background:#55692F"></div>
-        <h3>Pick a base</h3>
-        <p>Rice, greens, or warm pita — the foundation for everything on top.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">02</span>
-        <div class="step-ring" style="background:#E2A63B"></div>
-        <h3>Choose your protein</h3>
-        <p>Chicken shawarma, falafel, gyro, or grilled veggies for a fully vegan build.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">03</span>
-        <div class="step-ring" style="background:#7A3B49"></div>
-        <h3>Load it up</h3>
-        <p>Hummus, tabbouleh, pickled turnips, olives — as much as fits.</p>
-      </div>
-      <div class="step">
-        <span class="step-num">04</span>
-        <div class="step-ring" style="background:#1F332B"></div>
-        <h3>Finish with sauce</h3>
-        <p>Garlic toum, tzatziki, or house hot sauce ties the whole bowl together.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section section-alt" id="menu">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>On the menu</span>
-      <h2>Three ways to eat it.</h2>
-      <p>Same fresh ingredients, three formats — however you're hungry today.</p>
-    </div>
-    <div class="menu-grid reveal">
-      <div class="menu-card">
-        <div class="menu-thumb"><img src="images/platter.jpg" alt="Grilled chicken and beef skewers at Pita or Bowl"></div>
-        <span class="tag">Build Your Own</span>
-        <h3>Bowls, Pitas &amp; Wraps</h3>
-        <p>Pick your protein, base, sauce, and up to 4 toppings — build it exactly your way.</p>
-        <span class="price">$8.99–$18.99</span>
-      </div>
-      <div class="menu-card">
-        <div class="swatch" style="background:#7A3B49"></div>
-        <span class="tag">Veg Plates</span>
-        <h3>Veggie Plate</h3>
-        <p>Hummus and baba ganoush with grape leaves and falafel — fully plant-based.</p>
-        <span class="price">$12.99</span>
-      </div>
-      <div class="menu-card">
-        <div class="swatch" style="background:#E2A63B"></div>
-        <span class="tag">Desserts</span>
-        <h3>Baklava</h3>
-        <p>Classic Middle Eastern baklava, by the piece or a full assortment of six.</p>
-        <span class="price">$1.99–$10.99</span>
-      </div>
-    </div>
-    <div class="teaser-cta reveal">
-      <a href="#digital-menu" class="btn btn-ghost">View Full Digital Menu</a>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="digital-menu">
-  <div class="wrap">
-    <div class="digital-menu-head reveal">
-      <div>
-        <span class="eyebrow"><span class="dot"></span>Digital menu</span>
-        <h2>The full menu, all in one place.</h2>
-      </div>
-      <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-        <p style="max-width:30ch; opacity:0.8; margin:0;">Same menu as the counter board — tap Add to build an order preview.</p>
-        <button class="add-menu-btn" id="openAddMenu" type="button">+ Add Menu Item</button>
-      </div>
-    </div>
-
-    <div class="menu-tabs reveal" role="tablist" aria-label="Menu categories">
-      <button class="menu-tab active" data-tab="build" role="tab" aria-selected="true">Build Your Own</button>
-      <button class="menu-tab" data-tab="veg" role="tab" aria-selected="false">Veg Plates</button>
-      <button class="menu-tab" data-tab="sides" role="tab" aria-selected="false">Sides</button>
-      <button class="menu-tab" data-tab="desserts" role="tab" aria-selected="false">Desserts</button>
-      <button class="menu-tab" data-tab="drinks" role="tab" aria-selected="false">Drinks</button>
-    </div>
-
-    <div class="menu-panels reveal">
-
-      <div class="menu-panel active" id="panel-build">
-        <div class="menu-items">
-          <div class="menu-item" data-id="pita" data-name="Pita" data-price="8.99">
-            <div class="menu-item-info"><span class="menu-item-name">Pita</span><span class="menu-item-tags">Vegan option</span>
-              <div class="menu-item-desc">Toasted wrap — pick 1 protein, 1 base, 1 sauce &amp; any 4 toppings.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$8.99</div><div class="menu-item-controls" data-controls></div></div>
+  <main id="main">
+    <section class="hero">
+      <div class="container hero__inner">
+        <div>
+          <span class="hero__eyebrow">River Arts District · Asheville, NC</span>
+          <h1>Bread pulled from <em>real fire</em>, cake made for real celebrations.</h1>
+          <p class="hero__lead">Ember & Oak is a small wood-fired bakery baking naturally leavened sourdough, hand-laminated pastry, and custom celebration cakes — every loaf scored and baked in-house each morning.</p>
+          <div class="hero__actions">
+            <a href="menu.html" class="btn btn-primary">Browse the Menu</a>
+            <a href="menu.html#custom-cakes" class="btn btn-secondary">Order a Custom Cake</a>
           </div>
-          <div class="menu-item" data-id="wrap" data-name="Wrap" data-price="10.99">
-            <div class="menu-item-info"><span class="menu-item-name">Wrap</span><span class="menu-item-tags">Vegan option</span>
-              <div class="menu-item-desc">Toasted wrap — pick 1 protein, 1 base, 1 sauce &amp; any 4 toppings.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$10.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="starter-bowl" data-name="Starter Bowl" data-price="12.99">
-            <div class="menu-item-info"><span class="menu-item-name">Starter Bowl</span><span class="menu-item-tags">1 protein</span>
-              <div class="menu-item-desc">Includes your choice of 1 base, 1 sauce &amp; up to 4 toppings.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$12.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="grand-bowl" data-name="Grand Bowl" data-price="15.99">
-            <div class="menu-item-info"><span class="menu-item-name">Grand Bowl</span><span class="menu-item-tags">2 proteins</span>
-              <div class="menu-item-desc">Includes your choice of 1 base, 1 sauce &amp; up to 4 toppings.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$15.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="ultimate-bowl" data-name="Ultimate Bowl" data-price="18.99">
-            <div class="menu-item-info"><span class="menu-item-name">Ultimate Bowl</span><span class="menu-item-tags">3 proteins</span>
-              <div class="menu-item-desc">Includes your choice of 1 base, 1 sauce &amp; up to 4 toppings.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$18.99</div><div class="menu-item-controls" data-controls></div></div>
+          <div class="hero__meta">
+            <div><strong>Tue – Sat</strong>Open from 7 AM</div>
+            <div><strong>214 Depot Street</strong>River Arts District</div>
+            <div><strong>Pickup & local delivery</strong>Orders $75+</div>
           </div>
         </div>
+        <div class="hero__art">
+          <img src="images/hero-oven.svg" alt="Illustration of loaves baking in a wood-fired hearth oven" width="480" height="480">
+        </div>
+      </div>
+    </section>
 
-        <div class="combo-callout reveal">Make it a combo +$4.99 — add fries, rice, or lentil soup plus a drink or water.</div>
-
-        <div class="build-note reveal">
-          <div class="build-note-col">
-            <h4>Choose your base</h4>
-            <p>Basmati Rice, Hummus, Baba Ganoush</p>
+    <section class="snapshot-band">
+      <div class="container snapshot-grid">
+        <div class="snapshot-item">
+          <img src="images/icon-clock.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <div>
+            <h3>Hours</h3>
+            <p>Tue–Fri 7am–3pm · Sat 7am–2pm<br>Closed Sun & Mon</p>
           </div>
-          <div class="build-note-col">
-            <h4>Add your protein</h4>
-            <p>Chicken Shawarma, Shish Kabob, Shish Tawook, Gyro, Falafel, Cauliflower, Kufta</p>
+        </div>
+        <div class="snapshot-item">
+          <img src="images/icon-pin.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <div>
+            <h3>Location</h3>
+            <p>214 Depot Street<br>Asheville, NC 28801</p>
           </div>
-          <div class="build-note-col">
-            <h4>Choose your topping</h4>
-            <p>Red onion, red cabbage, feta (+$1), cucumber, lettuce, black olives, Arabic pickles, tomato, hot peppers, pickled turnips, chickpeas, parsley</p>
-          </div>
-          <div class="build-note-col">
-            <h4>Sauce it up</h4>
-            <p>Tahini, Dakra, Garlic, Tzatziki, Spicy Tahini, Spicy Garlic, Fire Sauce</p>
+        </div>
+        <div class="snapshot-item">
+          <img src="images/icon-oven.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <div>
+            <h3>How we bake</h3>
+            <p>Small daily batches, wood-fired hearth, 60-hour cold ferment.</p>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="menu-panel" id="panel-veg">
-        <div class="menu-items">
-          <div class="menu-item" data-id="lentil-soup" data-name="Lentil Soup" data-price="3.99">
-            <div class="menu-item-info"><span class="menu-item-name">Lentil Soup</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Healthy and yummy! Lentils are rich in vitamins &amp; fiber.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$3.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="arabic-mix" data-name="Arabic Mix" data-price="6.99">
-            <div class="menu-item-info"><span class="menu-item-name">Arabic Mix</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Tomato, cucumber, Arabic pickles, turnips, green pepper, vinaigrette.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$6.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="veggie-plate" data-name="Veggie Plate" data-price="12.99">
-            <div class="menu-item-info"><span class="menu-item-name">Veggie Plate</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Hummus, baba ganoush, 4 grape leaves, 4 falafel.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$12.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="protein-punch" data-name="Protein Punch" data-price="12.99">
-            <div class="menu-item-info"><span class="menu-item-name">Protein Punch</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">4 falafel, 4 grape leaves, 4 cauliflower — choose hummus or baba ganoush.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$12.99</div><div class="menu-item-controls" data-controls></div></div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">From the Ovens</span>
+          <h2>What's fresh this week</h2>
+          <p>A rotating look at what's coming out of the hearth — the full menu has everything, including sizes for whole cakes.</p>
+        </div>
+        <div class="grid-3" id="featuredProducts"></div>
+      </div>
+    </section>
+
+    <section class="section section--charcoal" style="padding-top:0;padding-bottom:3.5rem;">
+      <div class="container">
+        <div class="cta-band" style="margin:0;">
+          <span class="eyebrow" style="color:var(--ember-light)">Weddings · Birthdays · Celebrations</span>
+          <h2>Planning a cake for a big day?</h2>
+          <p>Tell us the flavor, size, and vision — our pastry chef will follow up with a quote and available dates. We recommend booking 6–8 weeks ahead for weddings.</p>
+          <div class="cta-band__actions">
+            <a href="menu.html#custom-cakes" class="btn btn-primary">Start a Custom Cake Request</a>
+            <a href="faq.html#custom-cakes" class="btn btn-secondary">Read Custom Cake FAQs</a>
           </div>
         </div>
       </div>
+    </section>
 
-      <div class="menu-panel" id="panel-sides">
-        <div class="menu-items">
-          <div class="menu-item" data-id="hummus-sm" data-name="Hummus (Small)" data-price="3.99">
-            <div class="menu-item-info"><span class="menu-item-name">Hummus (Small)</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Chickpeas are rich in vitamins and fiber.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$3.99</div><div class="menu-item-controls" data-controls></div></div>
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">Why Ember & Oak</span>
+          <h2>A hearth bakery, not a display case</h2>
+        </div>
+        <div class="grid-3">
+          <div class="feature-card">
+            <img src="images/icon-oven.svg" alt="" class="feature-card__icon" width="54" height="54">
+            <h3>Actually wood-fired</h3>
+            <p>Our hearth oven is fed with local hardwood, giving every loaf a deep, blistered crust you won't get from a standard deck oven.</p>
           </div>
-          <div class="menu-item" data-id="hummus-lg" data-name="Hummus (Large)" data-price="7.99">
-            <div class="menu-item-info"><span class="menu-item-name">Hummus (Large)</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Chickpeas are rich in vitamins and fiber.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$7.99</div><div class="menu-item-controls" data-controls></div></div>
+          <div class="feature-card">
+            <img src="images/icon-loaf.svg" alt="" class="feature-card__icon" width="54" height="54">
+            <h3>Long fermentation</h3>
+            <p>Our sourdough starter has been alive since 2018. Doughs rest up to 60 hours for flavor and easier digestion.</p>
           </div>
-          <div class="menu-item" data-id="baba-sm" data-name="Baba Ganoush (Small)" data-price="3.99">
-            <div class="menu-item-info"><span class="menu-item-name">Baba Ganoush (Small)</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Savory eggplant dip with tahini, garlic and citrus.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$3.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="baba-lg" data-name="Baba Ganoush (Large)" data-price="7.99">
-            <div class="menu-item-info"><span class="menu-item-name">Baba Ganoush (Large)</span><span class="menu-item-tags">Vegan</span>
-              <div class="menu-item-desc">Savory eggplant dip with tahini, garlic and citrus.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$7.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="pita-chips" data-name="Pita Chips" data-price="2.99">
-            <div class="menu-item-info"><span class="menu-item-name">Pita Chips</span><span class="menu-item-tags">Vegan</span></div>
-            <div class="menu-item-right"><div class="menu-item-price">$2.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="fries" data-name="Batata (Fries)" data-price="4.99">
-            <div class="menu-item-info"><span class="menu-item-name">Batata (Fries)</span><span class="menu-item-tags">Vegan</span></div>
-            <div class="menu-item-right"><div class="menu-item-price">$4.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="falafel-side" data-name="Falafel (6pc)" data-price="6.99">
-            <div class="menu-item-info"><span class="menu-item-name">Falafel</span><span class="menu-item-tags">6pc · Vegan</span>
-              <div class="menu-item-desc">Fluffy &amp; crispy fried chickpeas.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$6.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="cauliflower-side" data-name="Cauliflower (6pc)" data-price="6.99">
-            <div class="menu-item-info"><span class="menu-item-name">Cauliflower</span><span class="menu-item-tags">6pc · Vegan</span>
-              <div class="menu-item-desc">Coated with a spice blend.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$6.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="grape-leaves" data-name="Grape Leaves (6pc)" data-price="6.99">
-            <div class="menu-item-info"><span class="menu-item-name">Grape Leaves</span><span class="menu-item-tags">6pc · Vegan</span>
-              <div class="menu-item-desc">Stuffed with rice &amp; dipped in a tomato-based sauce.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$6.99</div><div class="menu-item-controls" data-controls></div></div>
+          <div class="feature-card">
+            <img src="images/icon-cake-whole.svg" alt="" class="feature-card__icon" width="54" height="54">
+            <h3>Cakes built to order</h3>
+            <p>No walk-in cake case — every celebration cake is designed one at a time with our pastry chef, from flavor to filling to message.</p>
           </div>
         </div>
       </div>
+    </section>
+  </main>
 
-      <div class="menu-panel" id="panel-desserts">
-        <div class="menu-items">
-          <div class="menu-item" data-id="baklava-1" data-name="Baklava (1pc)" data-price="1.99">
-            <div class="menu-item-info"><span class="menu-item-name">Baklava (1pc)</span>
-              <div class="menu-item-desc">Classic Middle Eastern dessert.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$1.99</div><div class="menu-item-controls" data-controls></div></div>
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const config = window.BAKERY_CONFIG;
+      const featured = [
+        config.menu.categories[0].items[0],
+        config.menu.categories[1].items[3],
+        config.menu.categories[2].items[1],
+      ];
+      const mount = document.getElementById("featuredProducts");
+      mount.innerHTML = featured
+        .map(
+          (item) => `
+        <div class="product-card">
+          <div class="product-card__art"><img src="images/${item.icon}" alt="" width="84" height="84" loading="lazy"></div>
+          <div class="product-card__body">
+            <div class="product-card__row">
+              <h3>${item.name}</h3>
+              <span class="product-card__price">$${item.price.toFixed(2)}</span>
+            </div>
+            <p>${item.description}</p>
+            <a href="menu.html" class="btn btn-outline btn-sm">View on Menu</a>
           </div>
-          <div class="menu-item" data-id="baklava-6" data-name="Baklava (6pc Assortment)" data-price="10.99">
-            <div class="menu-item-info"><span class="menu-item-name">Baklava (6pc Assortment)</span>
-              <div class="menu-item-desc">An assortment of baklava varieties.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$10.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="baklava-cheesecake" data-name="Baklava Cheesecake" data-price="4.99">
-            <div class="menu-item-info"><span class="menu-item-name">Baklava Cheesecake</span>
-              <div class="menu-item-desc">Best of both worlds — baklava &amp; cheesecake together.</div></div>
-            <div class="menu-item-right"><div class="menu-item-price">$4.99</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="menu-panel" id="panel-drinks">
-        <div class="menu-items">
-          <div class="menu-item" data-id="water" data-name="Water Bottle" data-price="">
-            <div class="menu-item-info"><span class="menu-item-name">Water Bottle</span></div>
-            <div class="menu-item-right"><div class="menu-item-price tbd">See board</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="soda" data-name="Soda Can" data-price="">
-            <div class="menu-item-info"><span class="menu-item-name">Soda Can</span></div>
-            <div class="menu-item-right"><div class="menu-item-price tbd">See board</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-          <div class="menu-item" data-id="barbican" data-name="Barbican" data-price="">
-            <div class="menu-item-info"><span class="menu-item-name">Barbican</span></div>
-            <div class="menu-item-right"><div class="menu-item-price tbd">See board</div><div class="menu-item-controls" data-controls></div></div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="menu-note">Menu items and prices are pulled from the in-store board — drink prices weren't fully visible in the photo, so double-check those three before this goes live.</p>
-  </div>
-</section>
-
-<button class="cart-fab" id="cartFab" hidden>
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-  <span>View Order</span>
-  <span class="badge" id="cartBadge">0</span>
-</button>
-
-<div class="cart-overlay" id="cartOverlay"></div>
-<aside class="cart-panel" id="cartPanel" aria-label="Your order">
-  <div class="cart-head">
-    <h3>Your Order</h3>
-    <button class="cart-close" id="cartClose" aria-label="Close order panel">✕</button>
-  </div>
-  <div class="cart-body" id="cartBody">
-    <div class="cart-empty">Nothing added yet — tap Add on any item to build a preview order.</div>
-  </div>
-  <div class="cart-foot">
-    <div class="cart-total-row"><span>Total</span><span id="cartTotal">$0.00</span></div>
-    <a href="tel:+12178483136" class="btn btn-primary" style="width:100%; justify-content:center;">Call to Order</a>
-    <p class="cart-note">This is a demo preview, not a live checkout — orders are placed by phone.</p>
-  </div>
-</aside>
-
-<div class="modal-overlay" id="addMenuOverlay">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="addMenuTitle">
-    <div class="modal-head">
-      <h3 id="addMenuTitle">Add Menu Item</h3>
-      <button class="modal-close" id="addMenuClose" aria-label="Close">✕</button>
-    </div>
-    <form id="addMenuForm">
-      <div class="modal-body">
-        <div class="field">
-          <label for="fItemName">Item name</label>
-          <input type="text" id="fItemName" name="itemName" placeholder="e.g. Chicken Shawarma Plate" required>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="fPrice">Price</label>
-            <input type="number" id="fPrice" name="price" placeholder="0.00" step="0.01" min="0" required>
-          </div>
-          <div class="field">
-            <label for="fCategory">Category</label>
-            <select id="fCategory" name="category" required>
-              <option value="build">Build Your Own</option>
-              <option value="veg">Veg Plates</option>
-              <option value="sides">Sides</option>
-              <option value="desserts">Desserts</option>
-              <option value="drinks">Drinks</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="fTag">Tag <span style="text-transform:none; font-weight:400; opacity:0.6;">(optional — e.g. "Vegan", "6pc")</span></label>
-          <input type="text" id="fTag" name="tag" placeholder="Vegan">
-        </div>
-        <div class="field">
-          <label for="fDesc">Description <span style="text-transform:none; font-weight:400; opacity:0.6;">(optional)</span></label>
-          <textarea id="fDesc" name="description" placeholder="Short description shown under the item name"></textarea>
-        </div>
-        <p class="field-hint">New items appear instantly in the menu below and can be added to the cart preview like any other item. This is a front-end demo — items reset if the page is reloaded, so they won't be saved permanently until this is connected to a real menu system.</p>
-      </div>
-      <div class="modal-foot">
-        <button type="button" class="btn btn-ghost" id="addMenuCancel">Cancel</button>
-        <button type="submit" class="btn btn-primary">Save Item</button>
-      </div>
-    </form>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
-<section class="section" id="about">
-  <div class="wrap about">
-    <div class="about-copy reveal">
-      <span class="eyebrow"><span class="dot"></span>About us</span>
-      <h2>A casual spot for fresh, made-your-way Mediterranean.</h2>
-      <p>Pita or Bowl is a build-your-own counter for bowls, salads, and pitas — quick to order, made fresh, and easy to make fully plant-based.</p>
-      <div class="pill-row">
-        <span class="pill">Vegan options</span>
-        <span class="pill">Pickup & delivery</span>
-        <span class="pill">No reservations needed</span>
-        <span class="pill">$10–20 per person</span>
-      </div>
-    </div>
-    <div class="about-visual reveal">
-      <img src="images/interior.jpg" alt="Dining area inside Pita or Bowl in Springfield, IL" style="width:100%;height:100%;object-fit:cover;">
-    </div>
-  </div>
-</section>
-
-<section class="section visit" id="visit">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="eyebrow"><span class="dot"></span>Visit</span>
-      <h2>Find us in Springfield.</h2>
-      <p>Walk in, call ahead, or order for pickup and delivery.</p>
-    </div>
-    <div class="visit-grid reveal">
-      <div class="visit-info">
-        <dl>
-          <dt>Address</dt>
-          <dd>848 S Grand Ave E<br>Springfield, IL 62703</dd>
-          <dt>Phone</dt>
-          <dd><a href="tel:+12178483136">+1 217-848-3136</a></dd>
-          <dt>Hours</dt>
-          <dd>Opens 11 AM daily</dd>
-          <dt>Rating</dt>
-          <dd>4.9 · 1,040 Google reviews</dd>
-        </dl>
-        <div class="hero-ctas" style="margin-top:32px;">
-          <a href="tel:+12178483136" class="btn btn-primary" style="background:var(--gold); color:var(--ink);">Order Pickup</a>
-          <a href="tel:+12178483136" class="btn btn-ghost" style="border-color:rgba(250,242,225,0.4);">Order Delivery</a>
-        </div>
-      </div>
-      <div class="map-frame">
-        <iframe
-          src="https://www.google.com/maps?q=848+S+Grand+Ave+E,+Springfield,+IL+62703&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Map to Pita or Bowl, 848 S Grand Ave E, Springfield, IL 62703">
-        </iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    <span>Pita or Bowl · Springfield, IL</span>
-    <span>Design mockup — not yet live</span>
-  </div>
-</footer>
-
-<script>
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  if(toggle){
-    toggle.addEventListener('click', function(){
-      links.classList.toggle('open');
-    });
-    links.querySelectorAll('a').forEach(function(a){
-      a.addEventListener('click', function(){ links.classList.remove('open'); });
-    });
-  }
-  var reveals = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, {threshold:0.15});
-    reveals.forEach(function(el){ io.observe(el); });
-  } else {
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  }
-
-  // Digital menu tabs
-  var tabs = document.querySelectorAll('.menu-tab');
-  var panels = document.querySelectorAll('.menu-panel');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      tabs.forEach(function(t){ t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      panels.forEach(function(p){ p.classList.remove('active'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected','true');
-      var panel = document.getElementById('panel-' + tab.dataset.tab);
-      if(panel){ panel.classList.add('active'); }
-    });
-  });
-
-  // Cart (in-memory demo only — resets on page reload, no real checkout)
-  var cart = {}; // id -> {name, price, qty}
-
-  function money(n){ return '$' + n.toFixed(2); }
-
-  function renderRowControls(row){
-    var id = row.dataset.id;
-    var price = parseFloat(row.dataset.price);
-    var controls = row.querySelector('[data-controls]');
-    if(!controls) return;
-    if(isNaN(price)){
-      controls.innerHTML = '<button class="add-btn" disabled>Ask staff</button>';
-      return;
-    }
-    var qty = cart[id] ? cart[id].qty : 0;
-    if(qty > 0){
-      controls.innerHTML =
-        '<div class="qty-stepper">' +
-          '<button class="qty-btn" data-action="dec" aria-label="Decrease quantity">−</button>' +
-          '<span class="qty-val">' + qty + '</span>' +
-          '<button class="qty-btn" data-action="inc" aria-label="Increase quantity">+</button>' +
-        '</div>';
-    } else {
-      controls.innerHTML = '<button class="add-btn" data-action="add">Add</button>';
-    }
-  }
-
-  function refreshAllRows(){
-    document.querySelectorAll('.menu-item[data-id]').forEach(renderRowControls);
-  }
-
-  function updateItem(id, name, price, delta){
-    if(!cart[id]) cart[id] = {name: name, price: price, qty: 0};
-    cart[id].qty += delta;
-    if(cart[id].qty <= 0) delete cart[id];
-    refreshAllRows();
-    renderCart();
-  }
-
-  function wireRow(row){
-    renderRowControls(row);
-    row.addEventListener('click', function(e){
-      var btn = e.target.closest('[data-action]');
-      if(!btn) return;
-      var id = row.dataset.id;
-      var name = row.dataset.name;
-      var price = parseFloat(row.dataset.price);
-      var action = btn.dataset.action;
-      if(action === 'add' || action === 'inc'){ updateItem(id, name, price, 1); }
-      else if(action === 'dec'){ updateItem(id, name, price, -1); }
-    });
-  }
-
-  document.querySelectorAll('.menu-item[data-id]').forEach(wireRow);
-
-  var cartFab = document.getElementById('cartFab');
-  var cartBadge = document.getElementById('cartBadge');
-  var cartPanel = document.getElementById('cartPanel');
-  var cartOverlay = document.getElementById('cartOverlay');
-  var cartBody = document.getElementById('cartBody');
-  var cartTotal = document.getElementById('cartTotal');
-  var cartClose = document.getElementById('cartClose');
-
-  function renderCart(){
-    var ids = Object.keys(cart);
-    var count = 0, total = 0;
-    ids.forEach(function(id){ count += cart[id].qty; total += cart[id].qty * cart[id].price; });
-
-    cartBadge.textContent = count;
-    cartFab.hidden = count === 0;
-    cartTotal.textContent = money(total);
-
-    if(ids.length === 0){
-      cartBody.innerHTML = '<div class="cart-empty">Nothing added yet — tap Add on any item to build a preview order.</div>';
-      return;
-    }
-    cartBody.innerHTML = ids.map(function(id){
-      var item = cart[id];
-      return (
-        '<div class="cart-line" data-id="' + id + '">' +
-          '<div class="cart-line-info">' +
-            '<div class="cart-line-name">' + item.name + '</div>' +
-            '<div class="cart-line-unit">' + money(item.price) + ' each</div>' +
-            '<div class="qty-stepper" style="margin-top:8px;">' +
-              '<button class="qty-btn" data-cart-action="dec" aria-label="Decrease quantity">−</button>' +
-              '<span class="qty-val">' + item.qty + '</span>' +
-              '<button class="qty-btn" data-cart-action="inc" aria-label="Increase quantity">+</button>' +
-            '</div>' +
-          '</div>' +
-          '<div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">' +
-            '<div class="cart-line-total">' + money(item.qty * item.price) + '</div>' +
-            '<button class="cart-remove" data-cart-action="remove">Remove</button>' +
-          '</div>' +
-        '</div>'
-      );
-    }).join('');
-  }
-
-  cartBody.addEventListener('click', function(e){
-    var btn = e.target.closest('[data-cart-action]');
-    if(!btn) return;
-    var line = e.target.closest('.cart-line');
-    var id = line.dataset.id;
-    var item = cart[id];
-    if(!item) return;
-    var action = btn.dataset.cartAction;
-    if(action === 'inc'){ updateItem(id, item.name, item.price, 1); }
-    else if(action === 'dec'){ updateItem(id, item.name, item.price, -1); }
-    else if(action === 'remove'){ delete cart[id]; refreshAllRows(); renderCart(); }
-  });
-
-  function openCart(){ cartPanel.classList.add('open'); cartOverlay.classList.add('open'); }
-  function closeCart(){ cartPanel.classList.remove('open'); cartOverlay.classList.remove('open'); }
-  cartFab.addEventListener('click', openCart);
-  cartClose.addEventListener('click', closeCart);
-  cartOverlay.addEventListener('click', closeCart);
-
-  renderCart();
-
-  // Add Menu Item modal
-  var addMenuOverlay = document.getElementById('addMenuOverlay');
-  var addMenuForm = document.getElementById('addMenuForm');
-  var toast = document.getElementById('toast');
-  var itemCounter = 0;
-
-  function showToast(msg){
-    toast.textContent = msg;
-    toast.classList.add('show');
-    setTimeout(function(){ toast.classList.remove('show'); }, 2400);
-  }
-
-  function openAddMenu(){
-    addMenuOverlay.classList.add('open');
-    document.getElementById('fItemName').focus();
-  }
-  function closeAddMenu(){
-    addMenuOverlay.classList.remove('open');
-    addMenuForm.reset();
-  }
-  document.getElementById('openAddMenu').addEventListener('click', openAddMenu);
-  document.getElementById('addMenuClose').addEventListener('click', closeAddMenu);
-  document.getElementById('addMenuCancel').addEventListener('click', closeAddMenu);
-  addMenuOverlay.addEventListener('click', function(e){
-    if(e.target === addMenuOverlay) closeAddMenu();
-  });
-
-  function slugify(str){
-    return str.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
-  }
-
-  addMenuForm.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('fItemName').value.trim();
-    var price = parseFloat(document.getElementById('fPrice').value);
-    var category = document.getElementById('fCategory').value;
-    var tag = document.getElementById('fTag').value.trim();
-    var desc = document.getElementById('fDesc').value.trim();
-    if(!name || isNaN(price)) return;
-
-    itemCounter++;
-    var id = 'custom-' + slugify(name) + '-' + itemCounter;
-
-    var row = document.createElement('div');
-    row.className = 'menu-item';
-    row.dataset.id = id;
-    row.dataset.name = name;
-    row.dataset.price = price.toFixed(2);
-
-    var tagHtml = tag ? '<span class="menu-item-tags">' + tag + '</span>' : '';
-    var descHtml = desc ? '<div class="menu-item-desc">' + desc + '</div>' : '';
-
-    row.innerHTML =
-      '<div class="menu-item-info"><span class="menu-item-name">' + name + '</span>' + tagHtml + descHtml + '</div>' +
-      '<div class="menu-item-right"><div class="menu-item-price">$' + price.toFixed(2) + '</div>' +
-      '<div class="menu-item-controls" data-controls></div></div>';
-
-    var targetList = document.querySelector('#panel-' + category + ' .menu-items');
-    if(targetList){
-      targetList.appendChild(row);
-    } else {
-      // fallback: build panel has extra sections after .menu-items, insert at end of its item list
-      document.querySelector('#panel-' + category).prepend(row);
-    }
-    wireRow(row);
-
-    // switch to that category tab so the person sees it land
-    var targetTab = document.querySelector('.menu-tab[data-tab="' + category + '"]');
-    if(targetTab) targetTab.click();
-    row.scrollIntoView({behavior:'smooth', block:'center'});
-
-    closeAddMenu();
-    showToast('"' + name + '" added to the menu');
-  });
-</script>
-
+        </div>`
+        )
+        .join("");
+    })();
+  </script>
 </body>
 </html>

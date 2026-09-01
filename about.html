@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Ember & Oak Bakehouse</title>
+  <meta name="description" content="Meet the team behind Ember & Oak Bakehouse — an Asheville wood-fired bakery built on long fermentation, honest ingredients, and made-to-order cakes.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="about">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">Our Story</span>
+        <h1>From a countertop starter to a wood-fired hearth</h1>
+        <p>Ember & Oak began in 2018 with one home oven, one sourdough starter, and a lot of curious neighbors. Today we're a full hearth bakery in Asheville's River Arts District — but the process hasn't changed much.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container" style="max-width:800px;">
+        <p style="font-size:1.1rem;color:var(--ink-soft);">Founder Maren Kessler started baking sourdough after a stint working bread shifts in Lyon, France. Back in Asheville, she kept a starter alive on her kitchen counter and began selling loaves at the local farmers market out of a cooler bag — three varieties, twenty loaves a week, gone within the hour.</p>
+        <p style="font-size:1.1rem;color:var(--ink-soft);">By 2018 the market table had turned into a lease on Depot Street, and a proper wood-fired hearth oven followed a year later. That oven is still the heart of the bakery: every loaf, whether it's our everyday country sourdough or a holiday centerpiece, passes through it.</p>
+        <p style="font-size:1.1rem;color:var(--ink-soft);">In 2020, pastry chef Diego Solis joined to build out our viennoiserie program and — because customers kept asking — our custom cake studio. What makes Ember & Oak different isn't a secret recipe; it's that we still bake in small batches, ferment doughs for days instead of hours, and build every custom cake from scratch with the person who ordered it.</p>
+
+        <div class="stat-row" style="margin-top:3rem;">
+          <div class="stat"><strong>2018</strong><span>Founded</span></div>
+          <div class="stat"><strong>60hr</strong><span>Cold Ferment</span></div>
+          <div class="stat"><strong>100%</strong><span>Wood-Fired</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">The Team</span>
+          <h2>Who's behind the counter</h2>
+        </div>
+        <div class="grid-3" id="teamGrid"></div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head center">
+          <span class="eyebrow">What Makes Us Different</span>
+          <h2>Small batch, on purpose</h2>
+        </div>
+        <div class="grid-3">
+          <div class="feature-card">
+            <h3>We bake to sell out</h3>
+            <p>We'd rather run out by 1pm than hold day-old bread. Batches are sized for freshness, not shelf life.</p>
+          </div>
+          <div class="feature-card">
+            <h3>No mixes, no shortcuts</h3>
+            <p>Flour, water, salt, and a wild starter for our breads. No dough conditioners, no bread improvers.</p>
+          </div>
+          <div class="feature-card">
+            <h3>Cakes are a conversation</h3>
+            <p>Every custom cake starts with a call or form, not a catalog. You work directly with our pastry chef.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const team = window.BAKERY_CONFIG.team;
+      document.getElementById("teamGrid").innerHTML = team
+        .map(
+          (member) => `
+        <div class="feature-card team-card">
+          <div class="team-card__portrait"><img src="images/icon-baker.svg" alt="" width="46" height="46" loading="lazy"></div>
+          <h3>${member.name}</h3>
+          <div class="role">${member.role}</div>
+          <p>${member.bio}</p>
+        </div>`
+        )
+        .join("");
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ember and Oak Bakehouse mark">
+  <circle cx="32" cy="32" r="29" fill="#e0611c"/>
+  <circle cx="32" cy="32" r="29" fill="none" stroke="#ffab54" stroke-width="1.5" opacity="0.5"/>
+  <g fill="none" stroke="#fbf3e6" stroke-width="2.6" stroke-linecap="round">
+    <path d="M18 22 Q26 30 18 42"/>
+    <path d="M28 16 Q36 30 28 48"/>
+    <path d="M38 20 Q46 30 39 44"/>
+  </g>
+</svg>

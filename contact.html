@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Ember & Oak Bakehouse</title>
+  <meta name="description" content="Get in touch with Ember & Oak Bakehouse in Asheville, NC — call, email, or send a message. Find our address, hours, and map.">
+  <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body data-page="contact">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div id="siteHeader"></div>
+
+  <main id="main">
+    <section class="page-banner">
+      <div class="container">
+        <span class="eyebrow">Contact</span>
+        <h1>Get in touch</h1>
+        <p>Questions about an order, our menu, or catering for an event? Send us a message or give us a call — we're happy to help.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container contact-grid">
+        <div>
+          <div class="form-card">
+            <div class="form-status" id="contactStatus" role="alert"></div>
+            <form id="contactForm">
+              <div class="field">
+                <label for="c-name">Name</label>
+                <input type="text" id="c-name" name="name" required autocomplete="name">
+                <span class="field-error">Please enter your name.</span>
+              </div>
+              <div class="field">
+                <label for="c-email">Email</label>
+                <input type="email" id="c-email" name="email" required autocomplete="email">
+                <span class="field-error">Please enter a valid email address.</span>
+              </div>
+              <div class="field">
+                <label for="c-message">Message</label>
+                <textarea id="c-message" name="message" required minlength="10" placeholder="How can we help?"></textarea>
+                <span class="field-error">Please enter a message (at least 10 characters).</span>
+              </div>
+              <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            </form>
+            <div class="form-success" id="contactSuccess">
+              <img src="images/icon-check.svg" alt="" class="form-success__icon" width="64" height="64">
+              <h3>Message sent</h3>
+              <p>Thanks for reaching out — we typically reply within one business day.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 style="font-size:1.5rem;">Visit or Reach Us</h2>
+          <ul class="info-list" id="contactInfoList"></ul>
+          <div class="map-embed">
+            <iframe id="mapFrame" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map to Ember & Oak Bakehouse"></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+  <script src="js/forms.js"></script>
+  <script>
+    (function () {
+      const config = window.BAKERY_CONFIG;
+
+      const hoursList = config.hours.map((h) => `<li><strong>${h.days}</strong>${h.time}</li>`).join("");
+      document.getElementById("contactInfoList").innerHTML = `
+        <li>
+          <img src="images/icon-pin.svg" alt="" class="info-list__icon" width="22" height="22">
+          <div>
+            <strong>${config.business.address.line1}, ${config.business.address.line2}</strong>
+            ${config.business.address.city}, ${config.business.address.state} ${config.business.address.zip}
+          </div>
+        </li>
+        <li>
+          <img src="images/icon-clock.svg" alt="" class="info-list__icon" width="22" height="22">
+          <div>
+            <strong>Hours</strong>
+            <ul style="margin-top:0.35rem;">${hoursList}</ul>
+          </div>
+        </li>
+        <li style="border-bottom:none;">
+          <span style="width:22px;flex-shrink:0;">📞</span>
+          <div>
+            <strong>Call or text</strong>
+            <a class="tap-to-call" href="tel:${config.business.phone.tel}">${config.business.phone.display}</a>
+          </div>
+        </li>
+      `;
+
+      document.getElementById("mapFrame").src = `https://maps.google.com/maps?q=${encodeURIComponent(config.business.mapEmbedQuery)}&output=embed`;
+
+      window.EmberForms.initForm(document.getElementById("contactForm"), {
+        endpoint: config.forms.contactEndpoint,
+        formName: "contact",
+        statusEl: "#contactStatus",
+        successEl: "#contactSuccess",
+      });
+    })();
+  </script>
+</body>
+</html>

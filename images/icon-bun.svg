@@ -1,0 +1,6 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Sticky bun">
+  <circle cx="32" cy="34" r="20" fill="#f2e6d2" stroke="#8a5a2b" stroke-width="2.5"/>
+  <path d="M32 34m-12 0a12 12 0 1 0 24 0a12 12 0 1 0 -24 0" fill="none" stroke="#e0611c" stroke-width="2.2"/>
+  <path d="M32 34 A6 6 0 1 1 31.99 34" fill="none" stroke="#e0611c" stroke-width="2.2"/>
+  <circle cx="32" cy="34" r="1.6" fill="#e0611c"/>
+</svg>
