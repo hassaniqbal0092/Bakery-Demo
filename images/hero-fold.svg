@@ -6,34 +6,65 @@
     </radialGradient>
   </defs>
 
+  <!-- Self-contained entrance: the layers draw themselves in, fold by fold,
+       the way lamination is actually built up. Pure CSS/SMIL so it runs
+       even if the host page's own script never executes, and respects
+       prefers-reduced-motion on its own — no parent-page dependency. -->
+  <style>
+    .crust { transform-origin: 240px 240px; animation: settle 700ms cubic-bezier(0.16,1,0.3,1) both; }
+    .fold { stroke-dasharray: 260; stroke-dashoffset: 260; animation: draw 620ms cubic-bezier(0.16,1,0.3,1) forwards; }
+    .fold--g1 { animation-delay: 260ms; }
+    .fold--g2 { animation-delay: 380ms; }
+    .fold--g3 { animation-delay: 500ms; }
+    .fold--g4 { animation-delay: 620ms; }
+    .fold--b1 { animation-delay: 340ms; }
+    .fold--b2 { animation-delay: 460ms; }
+    .fold--b3 { animation-delay: 580ms; }
+    .fold--b4 { animation-delay: 700ms; }
+    .pocket { transform-origin: 240px 255px; animation: pop 420ms cubic-bezier(0.16,1,0.3,1) 1150ms both; }
+    .crumb { animation: fade-in 400ms ease 1400ms both; }
+    .crumb:nth-of-type(2) { animation-delay: 1480ms; }
+    .crumb:nth-of-type(3) { animation-delay: 1560ms; }
+
+    @keyframes settle { from { opacity: 0.5; transform: scale(0.94); } to { opacity: 1; transform: scale(1); } }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+    @keyframes pop { from { opacity: 0; transform: scale(0.4); } to { opacity: 1; transform: scale(1); } }
+    @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .crust, .fold, .pocket, .crumb { animation: none !important; }
+      .fold { stroke-dashoffset: 0; }
+      .crust, .pocket, .crumb { opacity: 1; transform: none; }
+    }
+  </style>
+
   <circle cx="240" cy="240" r="220" fill="url(#glow)"/>
 
   <!-- outer crust -->
-  <path d="M240 60c-100 0-180 80-180 180s80 180 180 180 180-80 180-180S340 60 240 60z" fill="#faedc9" stroke="#2b1c14" stroke-width="3"/>
+  <path class="crust" d="M240 60c-100 0-180 80-180 180s80 180 180 180 180-80 180-180S340 60 240 60z" fill="#faedc9" stroke="#2b1c14" stroke-width="3"/>
 
   <!-- folded lamination layers, concentric and wavy like a croissant cross-section -->
   <g fill="none" stroke="#c9973e" stroke-width="4" stroke-linecap="round">
-    <path d="M120 240c0-40 20-70 55-85 15 30 15 60 0 90-35 15-55 35-55 -5z" opacity="0"/>
-    <path d="M150 180c50-30 130-30 180 0"/>
-    <path d="M135 220c60-35 150-35 210 0"/>
-    <path d="M128 260c65-35 160-35 225 0"/>
-    <path d="M140 300c58-32 145-32 200 0"/>
-    <path d="M165 335c45-25 105-25 150 0"/>
+    <path class="fold fold--g1" d="M150 180c50-30 130-30 180 0"/>
+    <path class="fold fold--g2" d="M135 220c60-35 150-35 210 0"/>
+    <path class="fold fold--g3" d="M128 260c65-35 160-35 225 0"/>
+    <path class="fold fold--g4" d="M140 300c58-32 145-32 200 0"/>
+    <path class="fold" style="animation-delay:740ms" d="M165 335c45-25 105-25 150 0"/>
   </g>
   <g fill="none" stroke="#7a1e3c" stroke-width="2.5" stroke-linecap="round">
-    <path d="M150 198c50-28 130-28 180 0"/>
-    <path d="M138 238c58-32 146-32 205 0"/>
-    <path d="M133 278c60-33 155-33 215 0"/>
-    <path d="M155 316c50-27 122-27 172 0"/>
+    <path class="fold fold--b1" d="M150 198c50-28 130-28 180 0"/>
+    <path class="fold fold--b2" d="M138 238c58-32 146-32 205 0"/>
+    <path class="fold fold--b3" d="M133 278c60-33 155-33 215 0"/>
+    <path class="fold fold--b4" d="M155 316c50-27 122-27 172 0"/>
   </g>
 
   <!-- center steam/butter pocket -->
-  <ellipse cx="240" cy="255" rx="26" ry="14" fill="#fffcf5" stroke="#c9973e" stroke-width="2"/>
+  <ellipse class="pocket" cx="240" cy="255" rx="26" ry="14" fill="#fffcf5" stroke="#c9973e" stroke-width="2"/>
 
   <!-- crumbs -->
   <g fill="#7a1e3c">
-    <circle cx="130" cy="390" r="4"/>
-    <circle cx="350" cy="385" r="3"/>
-    <circle cx="240" cy="405" r="3.4"/>
+    <circle class="crumb" cx="130" cy="390" r="4"/>
+    <circle class="crumb" cx="350" cy="385" r="3"/>
+    <circle class="crumb" cx="240" cy="405" r="3.4"/>
   </g>
 </svg>

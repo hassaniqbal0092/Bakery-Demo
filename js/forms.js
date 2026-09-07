@@ -142,9 +142,18 @@
 
       if (result.ok) {
         storeLocalSubmission(options.formName, payload);
-        form.hidden = true;
-        if (successEl) successEl.classList.add("is-visible");
-        if (typeof options.onSuccess === "function") options.onSuccess(payload);
+        // Let the form visibly hand off to the success panel instead of an
+        // instant jump-cut: fade/lift the form out, then reveal success.
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        form.classList.add("is-leaving");
+        setTimeout(
+          () => {
+            form.hidden = true;
+            if (successEl) successEl.classList.add("is-visible");
+            if (typeof options.onSuccess === "function") options.onSuccess(payload);
+          },
+          prefersReducedMotion ? 0 : 180
+        );
       } else {
         if (statusEl) {
           statusEl.textContent =

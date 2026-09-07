@@ -149,8 +149,18 @@
   }
 
   function syncCartCount() {
+    const count = window.Cart ? window.Cart.getCount() : 0;
     document.querySelectorAll("[data-cart-count]").forEach((el) => {
-      el.textContent = window.Cart ? window.Cart.getCount() : 0;
+      const changed = el.textContent !== String(count);
+      el.textContent = count;
+      // Only bump on an actual change (not the initial render), so the
+      // motion stays a real acknowledgment rather than noise on every load.
+      if (changed && el.dataset.cartCountInit) {
+        el.classList.remove("is-bumping");
+        void el.offsetWidth; // restart the animation if it's still running
+        el.classList.add("is-bumping");
+      }
+      el.dataset.cartCountInit = "1";
     });
   }
 

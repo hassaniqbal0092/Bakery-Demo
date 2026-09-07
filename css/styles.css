@@ -77,6 +77,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 button { font-family: inherit; cursor: pointer; }
 input, textarea, select { font-family: inherit; font-size: 1rem; }
 :focus-visible { outline: 2px solid var(--burgundy); outline-offset: 3px; }
+::selection { background: var(--burgundy); color: var(--text-on-burgundy); }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -119,7 +120,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   border-radius: var(--radius-sm);
   border: 1.5px solid transparent;
   text-decoration: none;
-  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
   white-space: nowrap;
 }
 .btn-primary { background: var(--burgundy); color: var(--text-on-burgundy); }
@@ -141,6 +142,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .btn-block { width: 100%; }
 .btn-sm { padding: 0.55rem 1rem; font-size: 0.85rem; }
 .btn[disabled] { opacity: 0.5; cursor: not-allowed; }
+.btn:active:not([disabled]) { transform: scale(0.97); }
 
 .text-link {
   background: none; border: none; padding: 0; font: inherit;
@@ -148,10 +150,18 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 }
 
 /* ---- Header ------------------------------------------------------------ */
-.site-header {
+/* Sticky positioning lives on the #siteHeader mount div, not on .site-header
+   itself: the mount div wraps the header exactly as tightly as the header
+   is tall, and a sticky element can't stick with room to spare inside a
+   containing block that short — it just scrolls away with it. The mount
+   div's own parent is <body> (full page height), which gives it the room
+   a sticky element actually needs. */
+#siteHeader {
   position: sticky;
   top: 0;
   z-index: 100;
+}
+.site-header {
   background: var(--cream);
   color: var(--ink);
   border-bottom: 1px solid var(--line);
@@ -227,12 +237,22 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
     background: var(--cream);
     flex-direction: column;
     align-items: flex-start;
-    padding: 1rem 1.5rem 1.5rem;
+    padding: 0 1.5rem;
     gap: 1rem;
-    border-bottom: 1px solid var(--line);
-    display: none;
+    border-bottom: 1px solid transparent;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 0.28s cubic-bezier(0.16,1,0.3,1), opacity 0.2s ease, padding 0.28s cubic-bezier(0.16,1,0.3,1);
   }
-  .js .main-nav.is-open { display: flex; }
+  .js .main-nav.is-open {
+    max-height: 320px;
+    opacity: 1;
+    padding: 1rem 1.5rem 1.5rem;
+    border-bottom-color: var(--line);
+    pointer-events: auto;
+  }
   .js .nav-toggle { display: inline-flex; }
   html:not(.js) .site-header__bar { flex-wrap: wrap; }
   html:not(.js) .main-nav {
@@ -362,7 +382,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .featured-card h3 { font-size: 1.15rem; margin-bottom: 0.35rem; }
 .featured-card p { color: var(--ink-soft); font-size: 0.95rem; margin-bottom: 1rem; }
 .featured-card__foot { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.featured-card__price { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--burgundy); white-space: nowrap; }
+.featured-card__price { font-family: var(--font-display); font-weight: 800; font-size: 1.2rem; color: var(--burgundy); white-space: nowrap; font-variant-numeric: tabular-nums; }
 @media (max-width: 780px) { .featured-list { grid-template-columns: 1fr; } }
 
 /* ---- Menu ------------------------------------------------------------------ */
@@ -371,7 +391,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   gap: 1.75rem;
   padding: 1.1rem 0;
   position: sticky;
-  top: 65px;
+  top: 74px; /* must match .site-header's rendered height so the two stuck bars sit flush, not overlapping */
   background: var(--cream);
   z-index: 40;
   border-bottom: 1px solid var(--line);
@@ -389,7 +409,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 }
 .menu-tabs a:hover, .menu-tabs a.is-active { color: var(--burgundy); border-color: var(--burgundy); }
 
-.menu-category { padding: 3.5rem 0; scroll-margin-top: 120px; }
+.menu-category { padding: 3.5rem 0; scroll-margin-top: 145px; } /* clears both stuck bars: 74px header + 66px tabs + buffer */
 .menu-category__head { display: flex; align-items: baseline; gap: 0.9rem; margin-bottom: 0.6rem; }
 .menu-category__head img { width: 26px; height: 26px; }
 .menu-category__head h2 { font-size: 2rem; margin-bottom: 0; }
@@ -410,7 +430,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .menu-item__body { flex: 1; min-width: 0; }
 .menu-item__row { display: flex; justify-content: space-between; gap: 0.75rem; align-items: baseline; }
 .menu-item__row h3 { font-size: 1.04rem; margin-bottom: 0.25rem; font-family: var(--font-display); font-weight: 700; }
-.menu-item__price { font-family: var(--font-display); font-weight: 800; color: var(--burgundy); white-space: nowrap; }
+.menu-item__price { font-family: var(--font-display); font-weight: 800; color: var(--burgundy); white-space: nowrap; font-variant-numeric: tabular-nums; }
 .menu-item p { font-size: 0.92rem; color: var(--ink-soft); margin-bottom: 0.6rem; }
 .menu-item__note { font-size: 0.76rem; color: var(--pistachio-deep); }
 .menu-item__foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; margin-top: 0.5rem; }
@@ -438,11 +458,26 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   padding: 0.25rem 0.5rem;
 }
 .qty-stepper button { background: none; border: none; font-size: 1rem; line-height: 1; width: 16px; color: var(--ink); font-weight: 800; }
-.qty-stepper span { min-width: 14px; text-align: center; font-size: 0.85rem; font-weight: 700; font-family: var(--font-display); }
+.qty-stepper span { min-width: 14px; text-align: center; font-size: 0.85rem; font-weight: 700; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
+
+/* Add <-> stepper swap the DOM outright (see menu.html), so a plain CSS
+   entrance animation on each freshly-inserted control is what makes the
+   swap read as a deliberate response instead of a layout jump. */
+@keyframes control-pop-in { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+.add-link, .qty-stepper { animation: control-pop-in 180ms cubic-bezier(0.16,1,0.3,1) both; }
+
+/* Cart-count badge: bumps when the count actually changes (toggled by
+   js/main.js), not on every render, so it stays a real acknowledgment. */
+@keyframes count-bump { 0% { transform: scale(1); } 40% { transform: scale(1.35); } 100% { transform: scale(1); } }
+.cart-count.is-bumping { animation: count-bump 320ms cubic-bezier(0.16,1,0.3,1); }
 
 /* ---- Cart drawer ------------------------------------------------------------ */
-.cart-overlay { position: fixed; inset: 0; background: rgba(43,28,20,0.5); z-index: 150; opacity: 0; pointer-events: none; transition: opacity 0.2s ease; }
-.cart-overlay.is-open { opacity: 1; pointer-events: auto; }
+.cart-overlay {
+  position: fixed; inset: 0; background: rgba(43,28,20,0.5); z-index: 150;
+  opacity: 0; pointer-events: none; backdrop-filter: blur(0);
+  transition: opacity 0.28s ease, backdrop-filter 0.28s ease;
+}
+.cart-overlay.is-open { opacity: 1; pointer-events: auto; backdrop-filter: blur(3px); }
 
 .cart-drawer {
   position: fixed; top: 0; right: 0; bottom: 0;
@@ -451,12 +486,15 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   color: var(--ink);
   z-index: 160;
   transform: translateX(100%);
-  transition: transform 0.25s ease;
+  transition: transform 0.22s cubic-bezier(0.4, 0, 1, 1); /* exit: quicker, no dawdling */
   display: flex;
   flex-direction: column;
   box-shadow: -20px 0 50px rgba(43,28,20,0.2);
 }
-.cart-drawer.is-open { transform: translateX(0); }
+.cart-drawer.is-open {
+  transform: translateX(0);
+  transition: transform 0.34s cubic-bezier(0.16, 1, 0.3, 1); /* entrance: confident arrival, deserves more time than the exit */
+}
 .cart-drawer__head {
   display: flex; align-items: center; justify-content: space-between;
   padding: 1.4rem 1.6rem; border-bottom: 1px solid var(--line);
@@ -473,9 +511,9 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .cart-line__variant { font-size: 0.78rem; color: var(--ink-soft); }
 .cart-line__controls { display: flex; align-items: center; gap: 0.75rem; margin-top: 0.55rem; }
 .cart-line__remove { background: none; border: none; color: var(--ink-soft); font-size: 0.78rem; text-decoration: underline; padding: 0; }
-.cart-line__price { font-family: var(--font-display); font-weight: 800; white-space: nowrap; color: var(--burgundy); }
+.cart-line__price { font-family: var(--font-display); font-weight: 800; white-space: nowrap; color: var(--burgundy); font-variant-numeric: tabular-nums; }
 .cart-drawer__foot { border-top: 1px solid var(--line); padding: 1.4rem 1.6rem 1.6rem; }
-.cart-total-row { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800; margin-bottom: 1.1rem; font-family: var(--font-display); }
+.cart-total-row { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 800; margin-bottom: 1.1rem; font-family: var(--font-display); font-variant-numeric: tabular-nums; }
 .cart-note { font-size: 0.78rem; color: var(--ink-soft); margin-top: 0.85rem; text-align: center; }
 
 /* ---- Custom cake — celebration module: pistachio accent, used only here --- */
@@ -503,8 +541,17 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .field textarea { resize: vertical; min-height: 110px; }
 .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--pistachio); }
 .field.has-error input, .field.has-error select, .field.has-error textarea { border-color: var(--error); }
-.field-error { color: var(--error); font-size: 0.8rem; margin-top: 0.35rem; display: none; }
-.field.has-error .field-error { display: block; }
+.field-error {
+  display: block; /* required for max-height/margin-top to have any effect at all — this is a <span> */
+  color: var(--error);
+  font-size: 0.8rem;
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease, opacity 0.2s ease, margin-top 0.2s ease;
+}
+.field.has-error .field-error { max-height: 2.5em; opacity: 1; margin-top: 0.35rem; }
 
 .radio-group, .checkbox-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
 .swatch-choice { position: relative; }
@@ -525,14 +572,21 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .swatch-choice input:checked + span { background: var(--pistachio-tint); border-color: var(--pistachio); color: var(--pistachio-deep); }
 .swatch-choice input:focus-visible + span { outline: 2px solid var(--pistachio); outline-offset: 2px; }
 
+@keyframes rise-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* The form fades/lifts out just before it's hidden (see forms.js), so the
+   swap to the success state reads as one continuous handoff rather than
+   an instant jump-cut. */
+form.is-leaving { opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity 0.18s ease, transform 0.18s ease; }
+
 .form-success { display: none; text-align: center; padding: 3rem 1.5rem; }
-.form-success.is-visible { display: block; }
+.form-success.is-visible { display: block; animation: rise-in 380ms cubic-bezier(0.16,1,0.3,1) both; }
 .form-success__icon { width: 56px; height: 56px; margin: 0 auto 1.25rem; }
 .form-success h3 { font-size: 1.5rem; font-weight: 800; }
 .form-success p { color: var(--ink-soft); max-width: 42ch; margin: 0 auto; }
 
 .form-status { display: none; border-radius: var(--radius-sm); padding: 0.85rem 1rem; font-size: 0.88rem; margin-bottom: 1.4rem; }
-.form-status.is-visible { display: block; }
+.form-status.is-visible { display: block; animation: rise-in 260ms cubic-bezier(0.16,1,0.3,1) both; }
 .form-status--error { background: var(--error-tint); color: var(--error); }
 
 /* ---- FAQ accordion ------------------------------------------------------------ */
@@ -560,7 +614,7 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
 .accordion-trigger__icon::before { width: 14px; height: 2px; }
 .accordion-trigger__icon::after { width: 2px; height: 14px; transition: transform 0.2s ease; }
 .accordion-item.is-open .accordion-trigger__icon::after { transform: translate(-50%, -50%) scaleY(0); }
-.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+.accordion-panel { max-height: 0; overflow: hidden; transition: max-height 0.3s cubic-bezier(0.16,1,0.3,1); }
 .accordion-panel__inner { padding-bottom: 1.35rem; color: var(--ink-soft); font-size: 0.98rem; max-width: 62ch; }
 
 /* ---- Contact / map -------------------------------------------------------------- */
@@ -616,10 +670,13 @@ input, textarea, select { font-family: inherit; font-size: 1rem; }
   font-size: 0.88rem; font-weight: 600;
   box-shadow: var(--shadow-lift);
   opacity: 0; pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease; /* exit: quicker */
   z-index: 200;
   max-width: min(90vw, 480px);
 }
-.toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.is-visible {
+  opacity: 1; transform: translateX(-50%) translateY(0);
+  transition: opacity 0.32s cubic-bezier(0.16,1,0.3,1), transform 0.32s cubic-bezier(0.16,1,0.3,1); /* entrance: confident arrival */
+}
 
 .policy-list li { padding: 0.85rem 0; border-bottom: 1px solid var(--line); font-size: 0.97rem; color: var(--ink-soft); }
