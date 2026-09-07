@@ -102,6 +102,7 @@ window.BAKERY_CONFIG = {
             price: 9.0,
             icon: "icon-loaf.svg",
             tags: ["contains wheat", "vegan"],
+            featured: true,
           },
           {
             id: "rye-caraway",
@@ -173,6 +174,7 @@ window.BAKERY_CONFIG = {
             price: 6.0,
             icon: "icon-bun.svg",
             tags: ["contains wheat", "contains dairy"],
+            featured: true,
           },
           {
             id: "morning-bun",
@@ -216,6 +218,7 @@ window.BAKERY_CONFIG = {
             price: 7.0,
             icon: "icon-cake-slice.svg",
             tags: ["contains wheat", "contains dairy", "contains eggs"],
+            featured: true,
             sizes: [
               { label: "Slice", price: 7.0 },
               { label: "Whole 8\"", price: 46 },

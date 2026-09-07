@@ -114,7 +114,7 @@
     countEls.forEach((el) => (el.textContent = Cart.getCount()));
 
     if (lines.length === 0) {
-      itemsEl.innerHTML = `<div class="cart-empty">Your cart is empty.<br>Add something fresh from the <a href="menu.html" style="color:var(--ember-dim);font-weight:600;">menu</a>.</div>`;
+      itemsEl.innerHTML = `<div class="cart-empty">Your cart is empty.<br>Add something fresh from the <a href="menu.html">menu</a>.</div>`;
       subtotalEl.textContent = formatPrice(0);
       return;
     }

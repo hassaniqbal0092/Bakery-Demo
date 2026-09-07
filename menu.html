@@ -1,44 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.classList.replace("no-js","js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu & Custom Cakes | Ember & Oak Bakehouse</title>
   <meta name="description" content="Browse wood-fired breads, viennoiserie, and everyday cakes from Ember & Oak Bakehouse, and request a custom celebration or wedding cake.">
   <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="menu">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div id="siteHeader"></div>
+  <!-- Static no-JS fallback: js/main.js replaces this entirely once it runs
+       (adding the cart button/toggle). Keep in sync with js/main.js's
+       PRIMARY_NAV_ITEMS/FOOTER_NAV_ITEMS and js/config.js business info. -->
+  <div id="siteHeader">
+    <header class="site-header">
+      <div class="site-header__bar">
+        <a href="index.html" class="brand">
+          <img src="images/logo-mark.svg" alt="" class="brand__mark" width="38" height="38">
+          <span class="brand__name">Ember & Oak</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="menu.html" aria-current="page">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQs</a>
+        </nav>
+      </div>
+    </header>
+  </div>
 
   <main id="main">
     <section class="page-banner">
       <div class="container">
-        <span class="eyebrow">Menu</span>
         <h1>Fresh from the hearth, baked in small batches</h1>
-        <p>Everything below is baked in-house daily. Add items to your cart for pickup, or scroll down to request a custom celebration cake.</p>
+        <p>Everything below is baked in-house daily. Add items to your order for pickup, or scroll down to request a custom celebration cake.</p>
       </div>
     </section>
 
-    <nav class="menu-jump" aria-label="Jump to menu section">
-      <div class="container" style="display:flex;gap:0.6rem;flex-wrap:wrap;padding:0;">
+    <nav class="menu-tabs" aria-label="Jump to menu section">
+      <div class="container" style="display:flex;gap:2rem;">
         <a href="#breads">Breads</a>
         <a href="#pastries">Pastries</a>
-        <a href="#cakes">Everyday Cakes</a>
-        <a href="#custom-cakes">Custom Cakes</a>
+        <a href="#cakes">Everyday cakes</a>
+        <a href="#custom-cakes">Custom cakes</a>
       </div>
     </nav>
 
     <div class="container" id="menuCategories"></div>
 
-    <section class="section section--charcoal" id="custom-cakes">
+    <section class="section" id="custom-cakes">
       <div class="container">
         <div class="section-head center">
-          <span class="eyebrow">Custom Cakes</span>
           <h2>Design a cake with us</h2>
           <p id="customCakeIntro"></p>
         </div>
@@ -116,21 +134,53 @@
               </select>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">Submit Custom Cake Request</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit custom cake request</button>
             <p class="cart-note" id="customCakeNote"></p>
           </form>
 
           <div class="form-success" id="customCakeSuccess">
-            <img src="images/icon-check.svg" alt="" class="form-success__icon" width="64" height="64">
-            <h3>Request received!</h3>
-            <p>Thank you — our pastry chef will email you within two business days with a quote and to lock in your date. Questions in the meantime? Call us at <a href="tel:" id="successPhoneLink" style="color:var(--ember-dim);font-weight:600;"></a>.</p>
+            <img src="images/icon-check.svg" alt="" class="form-success__icon" width="56" height="56">
+            <h3>Request received</h3>
+            <p>Thank you — our pastry chef will email you within two business days with a quote and to lock in your date. Questions in the meantime? Call us at <a href="tel:" id="successPhoneLink" style="color:var(--burgundy);font-weight:700;"></a>.</p>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <div id="siteFooter"></div>
+  <!-- Static no-JS fallback footer — see header comment above. -->
+  <div id="siteFooter">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Ember & Oak Bakehouse</h4>
+            <p>Wood-fired sourdough & scratch-made pastry, in Asheville's River Arts District since 2018.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Visit</h4>
+            <p>214 Depot Street, River Arts District<br>Asheville, NC 28801</p>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p><a href="tel:+18285550142">(828) 555-0142</a></p>
+            <p><a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
@@ -140,17 +190,19 @@
   <script>
     (function () {
       const config = window.BAKERY_CONFIG;
+      const CATEGORY_ICON = { breads: "icon-loaf.svg", pastries: "icon-croissant.svg", cakes: "icon-cake-slice.svg" };
 
-      /* ---- render menu categories ---- */
+      /* ---- render menu as a card grid ---- */
       const catMount = document.getElementById("menuCategories");
       catMount.innerHTML = config.menu.categories
         .map(
           (cat) => `
         <section class="menu-category" id="${cat.id}">
           <div class="menu-category__head">
+            <img src="images/${CATEGORY_ICON[cat.id] || "icon-loaf.svg"}" alt="" width="26" height="26">
             <h2>${cat.name}</h2>
-            <p>${cat.description}</p>
           </div>
+          <p class="menu-category__note">${cat.description}</p>
           <div class="menu-grid">
             ${cat.items
               .map((item) => {
@@ -158,22 +210,22 @@
                 const sizeOptions = hasSizes
                   ? item.sizes.map((s, i) => `<option value="${i}">${s.label} — $${s.price.toFixed(2)}</option>`).join("")
                   : "";
+                const dietNote = item.tags.filter((t) => t !== "vegan").join(", ");
                 return `
                 <article class="menu-item" data-item-id="${item.id}" data-icon="${item.icon}" data-name="${item.name}">
-                  <div class="menu-item__icon"><img src="images/${item.icon}" alt="" width="38" height="38" loading="lazy"></div>
+                  <img src="images/${item.icon}" alt="" class="menu-item__icon" width="52" height="52" loading="lazy">
                   <div class="menu-item__body">
                     <div class="menu-item__row">
                       <h3>${item.name}</h3>
                       <span class="menu-item__price" data-price-display>$${(hasSizes ? item.sizes[0].price : item.price).toFixed(2)}</span>
                     </div>
                     <p>${item.description}</p>
+                    ${dietNote ? `<div class="menu-item__note">${dietNote}</div>` : ""}
                     <div class="menu-item__foot">
                       <div class="menu-item__sizes">
                         ${hasSizes ? `<select data-size-select aria-label="Size for ${item.name}">${sizeOptions}</select>` : ""}
                       </div>
-                      <div class="qty-add">
-                        <button type="button" class="add-btn" data-add-btn data-base-price="${item.price}">Add to Cart</button>
-                      </div>
+                      <div data-action-mount></div>
                     </div>
                   </div>
                 </article>`;
@@ -184,11 +236,11 @@
         )
         .join("");
 
-      // Wire up add-to-cart + size selects
+      // Wire up add-to-order + size selects + qty stepper morph
       catMount.querySelectorAll(".menu-item").forEach((el) => {
         const sizeSelect = el.querySelector("[data-size-select]");
         const priceDisplay = el.querySelector("[data-price-display]");
-        const addBtn = el.querySelector("[data-add-btn]");
+        const actionMount = el.querySelector("[data-action-mount]");
         const itemId = el.dataset.itemId;
         const icon = el.dataset.icon;
         const name = el.dataset.name;
@@ -196,39 +248,54 @@
         const itemData = category.items.find((i) => i.id === itemId);
 
         function currentPrice() {
-          if (itemData.sizes) return itemData.sizes[sizeSelect.value].price;
-          return itemData.price;
+          return itemData.sizes ? itemData.sizes[sizeSelect.value].price : itemData.price;
         }
         function currentVariant() {
           return itemData.sizes ? itemData.sizes[sizeSelect.value].label : null;
         }
+        function lineKey() {
+          const v = currentVariant();
+          return v ? `${itemId}::${v}` : itemId;
+        }
+
+        function renderAction() {
+          const line = window.Cart.getLines().find((l) => l.key === lineKey());
+          if (line) {
+            actionMount.innerHTML = `
+              <div class="qty-stepper">
+                <button type="button" data-step="-1" aria-label="Decrease quantity">&minus;</button>
+                <span>${line.qty}</span>
+                <button type="button" data-step="1" aria-label="Increase quantity">&plus;</button>
+              </div>`;
+          } else {
+            actionMount.innerHTML = `<button type="button" class="add-link" data-add>Add</button>`;
+          }
+        }
+
+        actionMount.addEventListener("click", (e) => {
+          const addBtn = e.target.closest("[data-add]");
+          const stepBtn = e.target.closest("[data-step]");
+          if (addBtn) {
+            window.Cart.addItem({ itemId, name, price: currentPrice(), variant: currentVariant(), icon, qty: 1 });
+          } else if (stepBtn) {
+            const line = window.Cart.getLines().find((l) => l.key === lineKey());
+            const delta = Number(stepBtn.dataset.step);
+            window.Cart.updateQty(lineKey(), (line ? line.qty : 0) + delta);
+          }
+        });
 
         if (sizeSelect) {
           sizeSelect.addEventListener("change", () => {
             priceDisplay.textContent = `$${currentPrice().toFixed(2)}`;
+            renderAction();
           });
         }
 
-        addBtn.addEventListener("click", () => {
-          window.Cart.addItem({
-            itemId,
-            name,
-            price: currentPrice(),
-            variant: currentVariant(),
-            icon,
-            qty: 1,
-          });
-          const original = addBtn.textContent;
-          addBtn.textContent = "Added ✓";
-          addBtn.classList.add("is-added");
-          setTimeout(() => {
-            addBtn.textContent = original;
-            addBtn.classList.remove("is-added");
-          }, 1200);
-        });
+        document.addEventListener("cart:updated", renderAction);
+        renderAction();
       });
 
-      /* ---- custom cake form: populate selects/pills from config ---- */
+      /* ---- custom cake form: populate selects/swatches from config ---- */
       const cc = config.menu.customCake;
       document.getElementById("customCakeIntro").textContent = cc.intro;
 
@@ -246,7 +313,7 @@
       sizesMount.innerHTML = cc.sizes
         .map(
           (s, i) => `
-        <label class="pill-choice">
+        <label class="swatch-choice">
           <input type="radio" name="size" value="${s}" ${i === 0 ? "required" : ""}>
           <span>${s}</span>
         </label>`
@@ -275,7 +342,7 @@
         window.Cart.clear();
         alert("Thank you! Your order was placed successfully. We'll see you at pickup.");
       } else if (params.get("checkout") === "cancelled") {
-        alert("Checkout was cancelled — your cart has been saved.");
+        alert("Checkout was cancelled — your order has been saved.");
       }
     })();
   </script>

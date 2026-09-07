@@ -1,0 +1,39 @@
+<svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a cross-section of laminated pastry dough, showing its folded butter layers">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#f6e2b0" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#f6e2b0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <circle cx="240" cy="240" r="220" fill="url(#glow)"/>
+
+  <!-- outer crust -->
+  <path d="M240 60c-100 0-180 80-180 180s80 180 180 180 180-80 180-180S340 60 240 60z" fill="#faedc9" stroke="#2b1c14" stroke-width="3"/>
+
+  <!-- folded lamination layers, concentric and wavy like a croissant cross-section -->
+  <g fill="none" stroke="#c9973e" stroke-width="4" stroke-linecap="round">
+    <path d="M120 240c0-40 20-70 55-85 15 30 15 60 0 90-35 15-55 35-55 -5z" opacity="0"/>
+    <path d="M150 180c50-30 130-30 180 0"/>
+    <path d="M135 220c60-35 150-35 210 0"/>
+    <path d="M128 260c65-35 160-35 225 0"/>
+    <path d="M140 300c58-32 145-32 200 0"/>
+    <path d="M165 335c45-25 105-25 150 0"/>
+  </g>
+  <g fill="none" stroke="#7a1e3c" stroke-width="2.5" stroke-linecap="round">
+    <path d="M150 198c50-28 130-28 180 0"/>
+    <path d="M138 238c58-32 146-32 205 0"/>
+    <path d="M133 278c60-33 155-33 215 0"/>
+    <path d="M155 316c50-27 122-27 172 0"/>
+  </g>
+
+  <!-- center steam/butter pocket -->
+  <ellipse cx="240" cy="255" rx="26" ry="14" fill="#fffcf5" stroke="#c9973e" stroke-width="2"/>
+
+  <!-- crumbs -->
+  <g fill="#7a1e3c">
+    <circle cx="130" cy="390" r="4"/>
+    <circle cx="350" cy="385" r="3"/>
+    <circle cx="240" cy="405" r="3.4"/>
+  </g>
+</svg>

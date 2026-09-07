@@ -1,5 +1,5 @@
 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Wood-fired oven">
-  <path d="M10 44c0-14 10-26 22-26s22 12 22 26" fill="none" stroke="#e0611c" stroke-width="3" stroke-linecap="round"/>
-  <ellipse cx="32" cy="44" rx="24" ry="6" fill="none" stroke="#e0611c" stroke-width="3"/>
-  <ellipse cx="32" cy="34" rx="9" ry="6" fill="none" stroke="#e0611c" stroke-width="2.6"/>
+  <path d="M10 44c0-14 10-26 22-26s22 12 22 26" fill="none" stroke="#7a1e3c" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="32" cy="44" rx="24" ry="6" fill="none" stroke="#7a1e3c" stroke-width="3"/>
+  <ellipse cx="32" cy="34" rx="9" ry="6" fill="none" stroke="#7a1e3c" stroke-width="2.6"/>
 </svg>

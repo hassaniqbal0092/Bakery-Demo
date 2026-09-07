@@ -1,26 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.classList.replace("no-js","js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedback & Complaints | Ember & Oak Bakehouse</title>
   <meta name="description" content="Had an issue with an order or want to share feedback with Ember & Oak Bakehouse? Let us know here — we read every submission.">
   <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="feedback">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div id="siteHeader"></div>
+  <!-- Static no-JS fallback: js/main.js replaces this entirely once it runs
+       (adding the cart button/toggle). Keep in sync with js/main.js's
+       PRIMARY_NAV_ITEMS/FOOTER_NAV_ITEMS and js/config.js business info. -->
+  <div id="siteHeader">
+    <header class="site-header">
+      <div class="site-header__bar">
+        <a href="index.html" class="brand">
+          <img src="images/logo-mark.svg" alt="" class="brand__mark" width="38" height="38">
+          <span class="brand__name">Ember & Oak</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQs</a>
+        </nav>
+      </div>
+    </header>
+  </div>
 
   <main id="main">
     <section class="page-banner">
       <div class="container">
-        <span class="eyebrow">Feedback & Complaints</span>
         <h1>Tell us how we did</h1>
-        <p>Whether it's a compliment for the team or something that went wrong with an order, this form goes straight to our bakery manager — not the general inbox — so it gets a faster, more direct response. For general questions, use our <a href="contact.html" style="color:var(--flour);text-decoration:underline;">Contact page</a> instead.</p>
+        <p>Whether it's a compliment for the team or something that went wrong with an order, this form goes straight to our bakery manager — not the general inbox — so it gets a faster, more direct response. For general questions, use our <a href="contact.html" style="color:var(--burgundy);font-weight:600;text-decoration:underline;">Contact page</a> instead.</p>
       </div>
     </section>
 
@@ -32,17 +51,17 @@
             <div class="field">
               <label>What kind of feedback is this?</label>
               <div class="radio-group">
-                <label class="pill-choice">
+                <label class="swatch-choice">
                   <input type="radio" name="feedbackType" value="Compliment" required>
-                  <span>👍 Compliment</span>
+                  <span>Compliment</span>
                 </label>
-                <label class="pill-choice">
+                <label class="swatch-choice">
                   <input type="radio" name="feedbackType" value="Suggestion">
-                  <span>💡 Suggestion</span>
+                  <span>Suggestion</span>
                 </label>
-                <label class="pill-choice">
+                <label class="swatch-choice">
                   <input type="radio" name="feedbackType" value="Complaint">
-                  <span>⚠️ Complaint</span>
+                  <span>Complaint</span>
                 </label>
               </div>
               <span class="field-error">Please choose one.</span>
@@ -73,13 +92,13 @@
             </div>
 
             <div class="field">
-              <label class="pill-choice" style="display:inline-flex;align-items:center;gap:0.5rem;">
+              <label class="swatch-choice" style="display:inline-flex;align-items:center;gap:0.5rem;">
                 <input type="checkbox" name="wantsResponse" value="yes" style="position:static;opacity:1;width:auto;">
-                <span style="border:none;padding:0;">I'd like someone to follow up with me directly</span>
+                <span style="border:none;padding:0;background:none;">I'd like someone to follow up with me directly</span>
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block">Submit Feedback</button>
+            <button type="submit" class="btn btn-primary btn-block">Submit feedback</button>
           </form>
 
           <div class="form-success" id="feedbackSuccess">
@@ -92,7 +111,39 @@
     </section>
   </main>
 
-  <div id="siteFooter"></div>
+  <!-- Static no-JS fallback footer — see header comment above. -->
+  <div id="siteFooter">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Ember & Oak Bakehouse</h4>
+            <p>Wood-fired sourdough & scratch-made pastry, in Asheville's River Arts District since 2018.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Visit</h4>
+            <p>214 Depot Street, River Arts District<br>Asheville, NC 28801</p>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p><a href="tel:+18285550142">(828) 555-0142</a></p>
+            <p><a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>

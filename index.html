@@ -1,64 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8">
+  <script>document.documentElement.classList.replace("no-js","js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ember & Oak Bakehouse | Wood-Fired Bread & Custom Cakes in Asheville, NC</title>
   <meta name="description" content="Ember & Oak Bakehouse is a wood-fired sourdough bakery and custom cake studio in Asheville's River Arts District. Order breads, pastries, and custom celebration cakes.">
   <link rel="icon" href="images/logo-mark.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-page="home">
   <a class="skip-link" href="#main">Skip to content</a>
-  <div id="siteHeader"></div>
+  <!-- Static no-JS fallback: js/main.js replaces this entirely once it runs
+       (adding the cart button/toggle). Keep in sync with js/main.js's
+       PRIMARY_NAV_ITEMS/FOOTER_NAV_ITEMS and js/config.js business info. -->
+  <div id="siteHeader">
+    <header class="site-header">
+      <div class="site-header__bar">
+        <a href="index.html" class="brand">
+          <img src="images/logo-mark.svg" alt="" class="brand__mark" width="38" height="38">
+          <span class="brand__name">Ember & Oak</span>
+        </a>
+        <nav class="main-nav" aria-label="Primary">
+          <a href="index.html" aria-current="page">Home</a>
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+          <a href="faq.html">FAQs</a>
+        </nav>
+      </div>
+    </header>
+  </div>
 
   <main id="main">
     <section class="hero">
       <div class="container hero__inner">
         <div>
-          <span class="hero__eyebrow">River Arts District · Asheville, NC</span>
-          <h1>Bread pulled from <em>real fire</em>, cake made for real celebrations.</h1>
-          <p class="hero__lead">Ember & Oak is a small wood-fired bakery baking naturally leavened sourdough, hand-laminated pastry, and custom celebration cakes — every loaf scored and baked in-house each morning.</p>
+          <p class="hero__deck">A bakehouse in Asheville's River Arts District</p>
+          <h1>Folded by hand, baked with patience.</h1>
+          <p class="hero__lead">Ember & Oak bakes naturally leavened sourdough and hand-laminated viennoiserie — real butter, real folds, real time — plus custom cakes designed one at a time with our pastry chef.</p>
           <div class="hero__actions">
-            <a href="menu.html" class="btn btn-primary">Browse the Menu</a>
-            <a href="menu.html#custom-cakes" class="btn btn-secondary">Order a Custom Cake</a>
+            <a href="menu.html" class="btn btn-primary">Browse the menu</a>
+            <a href="menu.html#custom-cakes" class="btn btn-secondary">Order a custom cake</a>
           </div>
-          <div class="hero__meta">
+          <div class="hero__ticket">
             <div><strong>Tue – Sat</strong>Open from 7 AM</div>
-            <div><strong>214 Depot Street</strong>River Arts District</div>
-            <div><strong>Pickup & local delivery</strong>Orders $75+</div>
+            <div><strong>214 Depot St.</strong>River Arts District</div>
+            <div><strong>Pickup or delivery</strong>Local, on orders $75+</div>
           </div>
         </div>
         <div class="hero__art">
-          <img src="images/hero-oven.svg" alt="Illustration of loaves baking in a wood-fired hearth oven" width="480" height="480">
+          <img src="images/hero-fold.svg" alt="Illustration of a cross-section of laminated pastry dough, showing its folded layers" width="420" height="420">
         </div>
       </div>
     </section>
 
     <section class="snapshot-band">
+      <h2 class="visually-hidden">Bakery essentials at a glance</h2>
       <div class="container snapshot-grid">
         <div class="snapshot-item">
-          <img src="images/icon-clock.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <img src="images/icon-clock.svg" alt="" class="snapshot-item__icon" width="28" height="28">
           <div>
             <h3>Hours</h3>
-            <p>Tue–Fri 7am–3pm · Sat 7am–2pm<br>Closed Sun & Mon</p>
+            <p>Tue–Fri 7am–3pm, Sat 7am–2pm. Closed Sun & Mon.</p>
           </div>
         </div>
         <div class="snapshot-item">
-          <img src="images/icon-pin.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <img src="images/icon-pin.svg" alt="" class="snapshot-item__icon" width="28" height="28">
           <div>
             <h3>Location</h3>
-            <p>214 Depot Street<br>Asheville, NC 28801</p>
+            <p>214 Depot Street, Asheville, NC 28801</p>
           </div>
         </div>
         <div class="snapshot-item">
-          <img src="images/icon-oven.svg" alt="" class="snapshot-item__icon" width="34" height="34">
+          <img src="images/icon-oven.svg" alt="" class="snapshot-item__icon" width="28" height="28">
           <div>
             <h3>How we bake</h3>
-            <p>Small daily batches, wood-fired hearth, 60-hour cold ferment.</p>
+            <p>Small daily batches, 60-hour cold ferment, butter laminated by hand.</p>
           </div>
         </div>
       </div>
@@ -66,24 +87,22 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow">From the Ovens</span>
+        <div class="section-head">
           <h2>What's fresh this week</h2>
-          <p>A rotating look at what's coming out of the hearth — the full menu has everything, including sizes for whole cakes.</p>
+          <p>A rotating look at what's coming out of the kitchen — the full menu has everything, including sizes for whole cakes.</p>
         </div>
-        <div class="grid-3" id="featuredProducts"></div>
+        <div class="featured-list" id="featuredProducts"></div>
       </div>
     </section>
 
-    <section class="section section--charcoal" style="padding-top:0;padding-bottom:3.5rem;">
+    <section class="section section--burgundy">
       <div class="container">
-        <div class="cta-band" style="margin:0;">
-          <span class="eyebrow" style="color:var(--ember-light)">Weddings · Birthdays · Celebrations</span>
+        <div class="cta-panel">
           <h2>Planning a cake for a big day?</h2>
           <p>Tell us the flavor, size, and vision — our pastry chef will follow up with a quote and available dates. We recommend booking 6–8 weeks ahead for weddings.</p>
-          <div class="cta-band__actions">
-            <a href="menu.html#custom-cakes" class="btn btn-primary">Start a Custom Cake Request</a>
-            <a href="faq.html#custom-cakes" class="btn btn-secondary">Read Custom Cake FAQs</a>
+          <div class="cta-panel__actions">
+            <a href="menu.html#custom-cakes" class="btn btn-primary" style="background:var(--cream);color:var(--burgundy-deep);">Start a custom cake request</a>
+            <a href="faq.html#custom-cakes" class="btn btn-secondary on-burgundy">Read custom cake FAQs</a>
           </div>
         </div>
       </div>
@@ -91,23 +110,19 @@
 
     <section class="section">
       <div class="container">
-        <div class="section-head center">
-          <span class="eyebrow">Why Ember & Oak</span>
-          <h2>A hearth bakery, not a display case</h2>
+        <div class="section-head">
+          <h2>Baked slow, folded by hand, never a shortcut</h2>
         </div>
-        <div class="grid-3">
-          <div class="feature-card">
-            <img src="images/icon-oven.svg" alt="" class="feature-card__icon" width="54" height="54">
-            <h3>Actually wood-fired</h3>
-            <p>Our hearth oven is fed with local hardwood, giving every loaf a deep, blistered crust you won't get from a standard deck oven.</p>
+        <div class="feature-list">
+          <div class="feature-list__item">
+            <h3>60-hour cold ferment</h3>
+            <p>Our sourdough starter has been alive since 2018. Doughs rest for days, not hours, for flavor and easier digestion.</p>
           </div>
-          <div class="feature-card">
-            <img src="images/icon-loaf.svg" alt="" class="feature-card__icon" width="54" height="54">
-            <h3>Long fermentation</h3>
-            <p>Our sourdough starter has been alive since 2018. Doughs rest up to 60 hours for flavor and easier digestion.</p>
+          <div class="feature-list__item">
+            <h3>Butter, laminated by hand</h3>
+            <p>Croissant and kouign-amann dough is folded in-house — real European-style butter, real layers, no shortcuts.</p>
           </div>
-          <div class="feature-card">
-            <img src="images/icon-cake-whole.svg" alt="" class="feature-card__icon" width="54" height="54">
+          <div class="feature-list__item">
             <h3>Cakes built to order</h3>
             <p>No walk-in cake case — every celebration cake is designed one at a time with our pastry chef, from flavor to filling to message.</p>
           </div>
@@ -116,7 +131,45 @@
     </section>
   </main>
 
-  <div id="siteFooter"></div>
+  <!-- Static no-JS fallback footer — see header comment above. -->
+  <div id="siteFooter">
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <h4>Ember & Oak Bakehouse</h4>
+            <p>Wood-fired sourdough & scratch-made pastry, in Asheville's River Arts District since 2018.</p>
+          </div>
+          <div class="footer-col">
+            <h4>Explore</h4>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="menu.html">Menu</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Visit</h4>
+            <p>214 Depot Street, River Arts District<br>Asheville, NC 28801</p>
+          </div>
+          <div class="footer-col">
+            <h4>Contact</h4>
+            <p><a href="tel:+18285550142">(828) 555-0142</a></p>
+            <p><a href="mailto:hello@emberandoak.example">hello@emberandoak.example</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="footer-bottom">
+          <span>&copy; <span id="footerYearFallback">2026</span> Ember & Oak Bakehouse. All rights reserved.</span>
+          <span>Asheville, NC</span>
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script src="js/config.js"></script>
   <script src="js/main.js"></script>
@@ -126,27 +179,32 @@
   <script>
     (function () {
       const config = window.BAKERY_CONFIG;
-      const featured = [
-        config.menu.categories[0].items[0],
-        config.menu.categories[1].items[3],
-        config.menu.categories[2].items[1],
-      ];
+      // Featured items are picked by an explicit `featured: true` flag in
+      // config.js (not positional array indices), so a re-skin with fewer
+      // items per category can never throw here. Falls back to the first
+      // item of each category if fewer than 3 items are flagged featured.
+      const allItems = config.menu.categories.flatMap((c) => c.items);
+      let featured = allItems.filter((item) => item.featured);
+      if (featured.length < 3) {
+        featured = config.menu.categories.map((c) => c.items[0]).filter(Boolean);
+      }
+      featured = featured.slice(0, 3);
       const mount = document.getElementById("featuredProducts");
       mount.innerHTML = featured
-        .map(
-          (item) => `
-        <div class="product-card">
-          <div class="product-card__art"><img src="images/${item.icon}" alt="" width="84" height="84" loading="lazy"></div>
-          <div class="product-card__body">
-            <div class="product-card__row">
-              <h3>${item.name}</h3>
-              <span class="product-card__price">$${item.price.toFixed(2)}</span>
-            </div>
-            <p>${item.description}</p>
-            <a href="menu.html" class="btn btn-outline btn-sm">View on Menu</a>
+        .map((item) => {
+          const hasSizes = Array.isArray(item.sizes) && item.sizes.length > 0;
+          const priceLabel = hasSizes ? `$${item.sizes[0].price.toFixed(2)} / ${item.sizes[0].label.toLowerCase()}` : `$${item.price.toFixed(2)}`;
+          return `
+        <div class="featured-card">
+          <img src="images/${item.icon}" alt="" class="featured-card__icon" width="56" height="56" loading="lazy">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="featured-card__foot">
+            <span class="featured-card__price">${priceLabel}</span>
+            <a href="menu.html" class="text-link">View on menu</a>
           </div>
-        </div>`
-        )
+        </div>`;
+        })
         .join("");
     })();
   </script>

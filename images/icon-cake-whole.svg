@@ -1,8 +1,8 @@
 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Tiered celebration cake">
-  <rect x="16" y="38" width="32" height="12" rx="2" fill="#f2e6d2" stroke="#8a5a2b" stroke-width="2.5"/>
-  <rect x="22" y="24" width="20" height="14" rx="2" fill="#fbf3e6" stroke="#8a5a2b" stroke-width="2.5"/>
-  <line x1="16" y1="44" x2="48" y2="44" stroke="#e0611c" stroke-width="2"/>
-  <line x1="22" y1="31" x2="42" y2="31" stroke="#e0611c" stroke-width="2"/>
-  <line x1="32" y1="24" x2="32" y2="16" stroke="#8a5a2b" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M32 16c-2-3 2-3 0-6" fill="none" stroke="#e0611c" stroke-width="2" stroke-linecap="round"/>
+  <rect x="16" y="38" width="32" height="12" rx="2" fill="#faedc9" stroke="#2b1c14" stroke-width="2.5"/>
+  <rect x="22" y="24" width="20" height="14" rx="2" fill="#f6e2b0" stroke="#2b1c14" stroke-width="2.5"/>
+  <line x1="16" y1="44" x2="48" y2="44" stroke="#7a1e3c" stroke-width="2"/>
+  <line x1="22" y1="31" x2="42" y2="31" stroke="#7a1e3c" stroke-width="2"/>
+  <line x1="32" y1="24" x2="32" y2="16" stroke="#2b1c14" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M32 16c-2-3 2-3 0-6" fill="none" stroke="#7a1e3c" stroke-width="2" stroke-linecap="round"/>
 </svg>

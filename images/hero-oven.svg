@@ -1,18 +1,18 @@
 <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration of a wood-fired hearth oven with loaves of bread">
   <defs>
     <radialGradient id="glow" cx="50%" cy="60%" r="60%">
-      <stop offset="0%" stop-color="#ffab54" stop-opacity="0.55"/>
-      <stop offset="100%" stop-color="#ffab54" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#c97a3b" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#c97a3b" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
   <circle cx="240" cy="240" r="220" fill="url(#glow)"/>
 
   <!-- radiating score-line ring, echoes the brand mark -->
-  <g fill="none" stroke="#5e3c1c" stroke-width="1.4" opacity="0.35">
+  <g fill="none" stroke="#e7dfc9" stroke-width="1.2" opacity="0.16">
     <circle cx="240" cy="240" r="200"/>
   </g>
-  <g fill="none" stroke="#ffab54" stroke-width="2" stroke-linecap="round" opacity="0.8">
+  <g fill="none" stroke="#c97a3b" stroke-width="2" stroke-linecap="round" opacity="0.75">
     <path d="M60 190 Q90 240 60 300"/>
     <path d="M420 190 Q390 240 420 300"/>
     <path d="M100 110 Q140 150 110 190"/>
@@ -20,27 +20,26 @@
   </g>
 
   <!-- hearth oven arch -->
-  <path d="M100 400c0-90 62-160 140-160s140 70 140 160" fill="none" stroke="#fbf3e6" stroke-width="8" stroke-linecap="round"/>
-  <path d="M100 400c0-90 62-160 140-160s140 70 140 160" fill="none" stroke="#e0611c" stroke-width="2" stroke-dasharray="1 14" stroke-linecap="round"/>
-  <rect x="70" y="392" width="340" height="26" rx="6" fill="#fbf3e6" stroke="#5e3c1c" stroke-width="3"/>
+  <path d="M100 400c0-90 62-160 140-160s140 70 140 160" fill="none" stroke="#e7dfc9" stroke-width="8" stroke-linecap="round"/>
+  <rect x="70" y="392" width="340" height="26" rx="4" fill="#e7dfc9" stroke="#4a2a18" stroke-width="3"/>
 
   <!-- oven floor shadow -->
-  <ellipse cx="240" cy="392" rx="140" ry="14" fill="#3b2e22" opacity="0.5"/>
+  <ellipse cx="240" cy="392" rx="140" ry="14" fill="#1b140f" opacity="0.45"/>
 
   <!-- three loaves -->
-  <g stroke="#5e3c1c" stroke-width="2.5">
-    <ellipse cx="185" cy="380" rx="34" ry="20" fill="#8a5a2b"/>
-    <ellipse cx="240" cy="388" rx="38" ry="22" fill="#a5713a"/>
-    <ellipse cx="298" cy="380" rx="34" ry="20" fill="#8a5a2b"/>
+  <g stroke="#4a2a18" stroke-width="2.5">
+    <ellipse cx="185" cy="380" rx="34" ry="20" fill="#6b4226"/>
+    <ellipse cx="240" cy="388" rx="38" ry="22" fill="#7d5432"/>
+    <ellipse cx="298" cy="380" rx="34" ry="20" fill="#6b4226"/>
   </g>
-  <g fill="none" stroke="#ffab54" stroke-width="2" stroke-linecap="round">
+  <g fill="none" stroke="#c97a3b" stroke-width="2" stroke-linecap="round">
     <path d="M170 372 Q185 362 200 372"/>
     <path d="M222 380 Q240 368 258 380"/>
     <path d="M283 372 Q298 362 313 372"/>
   </g>
 
   <!-- embers -->
-  <g fill="#ffab54">
+  <g fill="#c97a3b">
     <circle cx="150" cy="410" r="3"/>
     <circle cx="330" cy="405" r="2.4"/>
     <circle cx="240" cy="420" r="2.6"/>

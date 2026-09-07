@@ -10,20 +10,28 @@
 (function () {
   "use strict";
 
-  const NAV_ITEMS = [
+  // Primary header nav stays at 5 items (chunking guideline) with a short
+  // "Menu" label. Feedback isn't a top-level conversion path, so it lives
+  // in the footer's Explore list and the footer's dedicated Contact link
+  // instead of competing for header space.
+  const PRIMARY_NAV_ITEMS = [
     { href: "index.html", label: "Home", page: "home" },
-    { href: "menu.html", label: "Menu & Custom Cakes", page: "menu" },
+    { href: "menu.html", label: "Menu", page: "menu" },
     { href: "about.html", label: "About", page: "about" },
     { href: "contact.html", label: "Contact", page: "contact" },
-    { href: "feedback.html", label: "Feedback", page: "feedback" },
     { href: "faq.html", label: "FAQs", page: "faq" },
+  ];
+
+  const FOOTER_NAV_ITEMS = [
+    ...PRIMARY_NAV_ITEMS,
+    { href: "feedback.html", label: "Feedback", page: "feedback" },
   ];
 
   function renderHeader(config, currentPage) {
     const mount = document.getElementById("siteHeader");
     if (!mount) return;
 
-    const navLinks = NAV_ITEMS.map(
+    const navLinks = PRIMARY_NAV_ITEMS.map(
       (item) => `<a href="${item.href}"${item.page === currentPage ? ' aria-current="page"' : ""}>${item.label}</a>`
     ).join("");
 
@@ -31,21 +39,23 @@
       <header class="site-header">
         <div class="site-header__bar">
           <a href="index.html" class="brand">
-            <img src="images/logo-mark.svg" alt="" class="brand__mark" width="40" height="40">
-            <span class="brand__text">
-              <span class="brand__name">${config.business.shortName}</span>
-              <span class="brand__tagline">Bakehouse</span>
-            </span>
+            <img src="images/logo-mark.svg" alt="" class="brand__mark" width="38" height="38">
+            <span class="brand__name">${config.business.shortName}</span>
           </a>
           <nav class="main-nav" id="mainNav" aria-label="Primary">
             ${navLinks}
           </nav>
           <div class="header-actions">
-            <button type="button" class="cart-btn" data-cart-open aria-label="Open cart">
-              🛒 <span>Cart</span>
-              <span class="cart-count" data-cart-count>0</span>
+            <button type="button" class="cart-btn" data-cart-open aria-label="Open order basket">
+              <svg class="cart-btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 9h16l-1.4 10.2a2 2 0 0 1-2 1.8H7.4a2 2 0 0 1-2-1.8L4 9Z"/>
+                <path d="M8 9V7a4 4 0 0 1 8 0v2"/>
+              </svg>
+              <span>Order <span class="cart-count" data-cart-count>0</span></span>
             </button>
-            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle menu">☰</button>
+            <button type="button" class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mainNav" aria-label="Toggle menu">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </button>
           </div>
         </div>
       </header>
@@ -64,8 +74,8 @@
     const mount = document.getElementById("siteFooter");
     if (!mount) return;
 
-    const navLinks = NAV_ITEMS.map((item) => `<li><a href="${item.href}">${item.label}</a></li>`).join("");
-    const hoursLines = config.hours.map((h) => `<li><strong style="color:var(--flour)">${h.days}</strong> ${h.time}</li>`).join("");
+    const navLinks = FOOTER_NAV_ITEMS.map((item) => `<li><a href="${item.href}">${item.label}</a></li>`).join("");
+    const hoursLines = config.hours.map((h) => `<li><strong style="color:var(--cream)">${h.days}</strong> ${h.time}</li>`).join("");
 
     mount.innerHTML = `
       <footer class="site-footer">
@@ -74,8 +84,8 @@
             <div class="footer-col">
               <h4>${config.business.name}</h4>
               <p>${config.business.tagline}. Baking wood-fired bread and scratch pastry in ${config.business.city} since ${config.business.founded}.</p>
-              <p>
-                <a href="${config.business.social.instagram}" target="_blank" rel="noopener">Instagram</a> ·
+              <p style="display:flex;gap:1rem;">
+                <a href="${config.business.social.instagram}" target="_blank" rel="noopener">Instagram</a>
                 <a href="${config.business.social.facebook}" target="_blank" rel="noopener">Facebook</a>
               </p>
             </div>
